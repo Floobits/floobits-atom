@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable floobits': 'floobits:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'floobits'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'floobits:toggle' }
+      ]
+    ]
+  }
+]
