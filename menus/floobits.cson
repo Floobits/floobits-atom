@@ -10,6 +10,7 @@
       'label': 'floobits'
       'submenu': [
         { 'label': 'JoinWorkspace', 'command': 'floobits:JoinWorkspace' }
+        { 'label': 'LeaveWorkspace', 'command': 'floobits:LeaveWorkspace' }
       ]
     ]
   }
