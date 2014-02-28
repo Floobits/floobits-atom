@@ -3,8 +3,8 @@
   "main": "./lib/floobits.js",
   "version": "0.0.0",
   "private": true,
-  "description": "A short description of your package",
-  "activationEvents": ["floobits:toggle"],
+  "description": "JoinWorkspace",
+  "activationEvents": ["floobits:JoinWorkspace"],
   "repository": "https://github.com/atom/floobits",
   "license": "MIT",
   "engines": {

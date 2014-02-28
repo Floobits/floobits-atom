@@ -1,7 +1,7 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
   '.overlayer':
-      'Enable floobits': 'floobits:toggle'
+      'Enable floobits': 'floobits:JoinWorkspace'
 
 'menu': [
   {
@@ -9,7 +9,7 @@
     'submenu': [
       'label': 'floobits'
       'submenu': [
-        { 'label': 'Toggle', 'command': 'floobits:toggle' }
+        { 'label': 'JoinWorkspace', 'command': 'floobits:JoinWorkspace' }
       ]
     ]
   }
