@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "async": "0.2.x",
+    "fs-extra": "",
     "diff_match_patch": "0.1.x",
     "floorine": "0.x",
     "lodash": "2.3.x",
