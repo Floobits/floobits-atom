@@ -2,6 +2,7 @@
 'context-menu':
   '.overlayer':
       'Enable floobits': 'floobits:JoinWorkspace'
+      'Enable floobits': 'floobits:JoinRecentWorkspace'
 
 'menu': [
   {
@@ -10,6 +11,7 @@
       'label': 'floobits'
       'submenu': [
         { 'label': 'Join Workspace', 'command': 'floobits:JoinWorkspace' }
+        { 'label': 'Join Recent Workspace', 'command': 'floobits:JoinRecentWorkspace' }
         { 'label': 'Leave Workspace', 'command': 'floobits:LeaveWorkspace' }
       ]
     ]
