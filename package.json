@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "JoinWorkspace",
-  "activationEvents": ["floobits:JoinWorkspace", "floobits:JoinRecentWorkspace"],
+  "activationEvents": ["application:open", "application:open-dev", "application:new-window", "floobits:JoinWorkspace", "floobits:JoinRecentWorkspace"],
   "repository": "https://github.com/atom/floobits",
   "license": "MIT",
   "engines": {
@@ -15,7 +15,6 @@
     "fs-plus": "",
     "fs-extra": "",
     "diff_match_patch": "0.1.x",
-    "floorine": "0.x",
     "lodash": "2.3.x",
     "minimatch": "0.2.x",
     "mkdirp": "0.3.x",
