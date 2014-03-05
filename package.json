@@ -19,6 +19,7 @@
     "minimatch": "0.2.x",
     "mkdirp": "0.3.x",
     "open": "0.x",
-    "request": "2.x"
+    "request": "2.x",
+    "minimatch" : ""
   }
 }
