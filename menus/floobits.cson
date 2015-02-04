@@ -8,7 +8,7 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'floobits'
+      'label': 'Floobits'
       'submenu': [
         { 'label': 'Join Workspace', 'command': 'floobits:JoinWorkspace' }
         { 'label': 'Join Recent Workspace', 'command': 'floobits:JoinRecentWorkspace' }
