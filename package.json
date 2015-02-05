@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "private": true,
   "description": "JoinWorkspace",
-  "activationEvents": ["floobits:JoinWorkspace", "floobits:JoinRecentWorkspace"],
   "repository": "https://github.com/atom/floobits",
   "license": "MIT",
   "engines": {
