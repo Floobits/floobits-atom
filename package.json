@@ -4,6 +4,30 @@
   "version": "0.0.1",
   "private": true,
   "description": "Floobits plugin for Atom editor",
+  "maintainers": [
+    {
+      "name": "Geoff Greer",
+      "web": "http://geoff.greer.fm/"
+    },
+    {
+      "name": "Matt Kaniaris",
+      "web": "https://github.com/kans"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Geoff Greer",
+      "web": "http://geoff.greer.fm/"
+    },
+    {
+      "name": "Matt Kaniaris",
+      "web": "https://github.com/kans"
+    },
+    {
+      "name": "Bjorn Tipling",
+      "web": "https://github.com/btipling"
+    }
+  ],
   "repository": "https://github.com/Floobits/floobits-atom",
   "license": "Apache 2.0",
   "engines": {
