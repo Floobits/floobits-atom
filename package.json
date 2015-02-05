@@ -1,23 +1,23 @@
 {
   "name": "floobits",
   "main": "./lib/floobits.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "JoinWorkspace",
-  "repository": "https://github.com/atom/floobits",
-  "license": "MIT",
+  "description": "Floobits plugin for Atom editor",
+  "repository": "https://github.com/Floobits/floobits-atom",
+  "license": "Apache 2.0",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">0.176.0"
   },
   "dependencies": {
-    "async": "0.2.x",
-    "fs-plus": "",
-    "fs-extra": "",
+    "async": "0.9.x",
     "diff_match_patch": "0.1.x",
     "flukes": "0.1.x",
-    "lodash": "2.3.x",
-    "minimatch": "0.2.x",
-    "mkdirp": "0.3.x",
+    "fs-extra": "0.16.x",
+    "fs-plus": "2.5.x",
+    "lodash": "3.1.x",
+    "minimatch": "2.0.x",
+    "mkdirp": "0.5.x",
     "open": "0.x",
     "request": "2.x"
   }
