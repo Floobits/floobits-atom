@@ -43,7 +43,9 @@
     "minimatch": "2.0.x",
     "mkdirp": "0.5.x",
     "open": "0.x",
-    "request": "2.x"
+    "request": "2.x",
+    "react-atom-fork": "0.11.5",
+    "reactionary-atom-fork": ""
   },
   "devDependencies": {
     "jshint": "2.4.x"
