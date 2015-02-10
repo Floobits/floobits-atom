@@ -2,4 +2,4 @@
 
 JSHINT="./node_modules/jshint/bin/jshint"
 
-$JSHINT lib/*.js
+$JSHINT lib/*.js lib/common/*.js
