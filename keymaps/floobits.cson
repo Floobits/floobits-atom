@@ -9,3 +9,4 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-text-editor':
   'ctrl-alt-o': 'floobits:JoinRecentWorkspace'
+  'ctrl-shift-j': 'floobits:JoinWorkspace'
