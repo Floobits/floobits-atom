@@ -4,11 +4,35 @@
 // for a full listing of what's available.
 @import "ui-variables";
 
-.floobits {
-
+.make_highlight_dark(@hlcolor) {
+  .floobits-highlight-dark_@{hlcolor} .region {
+    background-color: @hlcolor;
+    opacity: .3;
+  }
 }
 
-.floobits-highlight .region {
-  background-color: #F00;
-  opacity: .3;
+.floobits-highlight-light(@hlcolor) {
+  .floobits-highlight_@{hlcolor} .region {
+    background-color: @hlcolor;
+    opacity: .8;
+  }
 }
+
+.make_highlight_dark(e("black"));
+.make_highlight_dark(e("blue"));
+.make_highlight_dark(e("darkblue"));
+.make_highlight_dark(e("fuchsia"));
+.make_highlight_dark(e("gray"));
+.make_highlight_dark(e("green"));
+.make_highlight_dark(e("greenyellow"));
+.make_highlight_dark(e("indigo"));
+.make_highlight_dark(e("lime"));
+.make_highlight_dark(e("magenta"));
+.make_highlight_dark(e("maroon"));
+.make_highlight_dark(e("midnightblue"));
+.make_highlight_dark(e("orange"));
+.make_highlight_dark(e("orangered"));
+.make_highlight_dark(e("purple"));
+.make_highlight_dark(e("red"));
+.make_highlight_dark(e("teal"));
+.make_highlight_dark(e("yellow"));
