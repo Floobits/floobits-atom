@@ -49,9 +49,9 @@
     "reactionary-atom-fork": ""
   },
   "devDependencies": {
-    "jshint": "2.4.x",
+    "jshint": "2.4.x"
   },
   "scripts": {
     "jsx": "node_modules/react-tools/bin/jsx --watch templates lib/build"
-  },
+  }
 }
