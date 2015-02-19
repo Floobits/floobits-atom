@@ -8,12 +8,15 @@ class JoinWorkspace extends View
         when 13
           url = @input.val()
           process.nextTick =>
-            @detach()
+            @panel.destroy()
           params.on_url? url
-        when 27 then @detach() # escape
+        when 27 then @panel.destroy() # escape
         else return
     @input.on 'focus', () =>
       @input.val(@input.val());
+    process.nextTick =>
+      @panel = atom.workspace.addModalPanel(item: @)
+      @input.focus()
 
   @content: (params) ->
     @div id: "asdfsadfasdf", =>
