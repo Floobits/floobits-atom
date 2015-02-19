@@ -8,5 +8,5 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-text-editor':
-  'ctrl-alt-o': 'floobits:JoinRecentWorkspace'
-  'ctrl-shift-j': 'floobits:JoinWorkspace'
+  'ctrl-alt-o': 'floobits: Join Recent Workspace'
+  'ctrl-shift-j': 'floobits: Join Workspace'
