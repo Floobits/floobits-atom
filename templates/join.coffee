@@ -6,10 +6,9 @@ class JoinWorkspace extends View
     @input.on 'keydown', (e) =>
       switch e.which 
         when 13
-          url = @input.val()
           process.nextTick =>
             @panel.destroy()
-          params.on_url? url
+          params.on_url? @input.val()
         when 27 then @panel.destroy() # escape
         else return
     @input.on 'focus', () =>
