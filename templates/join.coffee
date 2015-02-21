@@ -20,6 +20,7 @@ class JoinWorkspace extends View
   @content: (params) ->
     @div id: "asdfsadfasdf", =>
       @h3 "Url for Workspace: ", style: "text-align: center; width: 100%;"
-      @input outlet: 'input', style: "width: 100%;", value: params.url
+      @input outlet: 'input', style: "width: 100%;", value: params.url, class: "native-key-bindings"
+      # @input type: "file", webkitdirectory: params.dir, directory: params.dir
 
 module.exports = JoinWorkspace
