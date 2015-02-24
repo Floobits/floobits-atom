@@ -46,7 +46,8 @@
     "request": "2.x",
     "react-atom-fork": "0.11.5",
     "react-tools": "0.11.2",
-    "reactionary-atom-fork": ""
+    "reactionary-atom-fork": "",
+    "atom-space-pen-views": "2.0.4"
   },
   "devDependencies": {
     "jshint": "2.4.x"
