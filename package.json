@@ -52,6 +52,7 @@
     "jshint": "2.4.x"
   },
   "scripts": {
-    "jsx": "node_modules/react-tools/bin/jsx --watch templates lib/build"
+    "build": "node_modules/.bin/jsx templates lib/build",
+    "watch": "node_modules/.bin/jsx --watch templates lib/build"
   }
 }
