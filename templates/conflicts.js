@@ -4,6 +4,7 @@ var _ = require("lodash");
 var path = require("path");
 var React = require('react-atom-fork');
 var floop = require("../common/floop");
+$ = require('atom-space-pen-views').$;
 var utils = require("../utils");
 
 module.exports = React.createClass({
@@ -28,6 +29,10 @@ module.exports = React.createClass({
       enabled: true,
       clicked: "",
     }
+  },
+  componentDidMount: function () {
+    var local = this.refs.local;
+    $(local.getDOMNode()).focus();
   },
   onClick: function (id) {
     console.log(id);
@@ -102,7 +107,7 @@ module.exports = React.createClass({
       <div className="native-key-bindings" style={{overflow: "auto"}}>
         <h1>Your local files are different from the workspace.</h1>
         <button disabled={!this.state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
-        <button disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
+        <button ref="local" disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
         <button disabled={!this.state.enabled} onClick={this.cancel_}>Cancel</button>
 
         {missing}

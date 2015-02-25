@@ -10,3 +10,4 @@
 'atom-text-editor':
   'ctrl-alt-o': 'floobits: Join Recent Workspace'
   'ctrl-shift-j': 'floobits: Join Workspace'
+  'ctrl-shift-a': 'floobits: Follow'
