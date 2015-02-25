@@ -55,12 +55,12 @@ module.exports = React.createClass({
   remote_: function () {
     this.setState({enabled: false});
     _.each(this.props.different, function (b, id) {
+      let encoding = b.encoding || "utf8";
       floop.send_set_buf({
         id: id,
-        buf: b.txt,
+        buf: b.txt.toString(encoding),
         md5: b.md5,
-        // TODO: get encoding
-        // encoding: "utf8",
+        encoding: b,
       });
     });
     // ST3 behavior 
@@ -80,7 +80,7 @@ module.exports = React.createClass({
 
         floop.send_create_buf({
           path: rel,
-          buf: encoding === "utf8" ? data.toString("utf8") : data.toString("base64"),
+          buf: data.toString(encoding),
           encoding: encoding,
           md5: utils.md5(data),
         });
