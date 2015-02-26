@@ -53,7 +53,7 @@
     "jshint": "2.4.x"
   },
   "scripts": {
-    "build": "node_modules/.bin/jsx templates lib/build",
-    "watch": "node_modules/.bin/jsx --watch templates lib/build"
+    "build": "node_modules/.bin/jsx --harmony templates lib/build",
+    "watch": "node_modules/.bin/jsx --watch --harmony templates lib/build"
   }
 }
