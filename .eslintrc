@@ -1,0 +1,23 @@
+{ 
+  "env": {
+  "node": true
+  },
+  "rules": {
+  "camelcase": [0, false],
+  "consistent-this": [1, "self"],
+  "default-case": [2, true],
+  "guard-for-in": [2, true],
+  "indent": [2, 2],
+  "max-nested-callbacks": [2, 3],
+  "no-comma-dangle": [0, false],
+  "no-nested-ternary": [2, true],
+  "no-self-compare": [2, true],
+  "no-sync": [2, true],
+  "no-underscore-dangle": [1, false],
+  "no-throw-literal": [2, true],
+  "no-void": [2, true],
+  "radix": [2, true],
+  "strict": [2, "global"],
+  "vars-on-top": [2, true]
+  }
+ }
