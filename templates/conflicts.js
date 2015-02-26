@@ -1,9 +1,11 @@
 /** @jsx React.DOM */
-"use 6to5"
+"use 6to5";
+
 var _ = require("lodash");
 var path = require("path");
 var React = require('react-atom-fork');
 var floop = require("../common/floop");
+var fs = require("fs");
 $ = require('atom-space-pen-views').$;
 var utils = require("../utils");
 
