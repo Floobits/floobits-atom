@@ -4,17 +4,30 @@
 // for a full listing of what's available.
 @import "ui-variables";
 
+@transition-time: 0.5s;
+@size: 2px;
+
 .make_highlight_dark(@hlcolor) {
   .floobits-highlight-dark_@{hlcolor} .region {
     background-color: @hlcolor;
     opacity: .3;
   }
+  .floobits-highlight-dark_@{hlcolor}.line-number:before {
+      border-right: @size solid @hlcolor;
+      content: " ";
+      transition: @transition-time;
+  }
 }
 
 .floobits-highlight-light(@hlcolor) {
-  .floobits-highlight_@{hlcolor} .region {
+  .floobits-highlight_@{hlcolor}.region {
     background-color: @hlcolor;
     opacity: .8;
+  }
+  .floobits-highlight_@{hlcolor}.line-number:before {
+      border-right: @size solid @hlcolor;
+      content: " ";
+      transition: @transition-time;
   }
 }
 
