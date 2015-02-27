@@ -1,0 +1,134 @@
+//@import "bootstrap_v3.2.0/variables.less";
+//@import "bootstrap_v3.2.0/mixins/alerts.less";
+//@import "bootstrap_v3.2.0/alerts.less";
+@import "colors.less";
+
+//.alert-error {
+//  .alert-danger;
+//}
+
+.nomar_nopad() {
+  margin: 0;
+  padding: 0;
+}
+
+.pos(@top: 0, @right: 0, @bottom: 0, @left: 0) {
+  position: absolute;
+  top: @top;
+  right: @right;
+  bottom: @bottom;
+  left: @left;
+}
+
+.pos_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sans {
+  font-family: "HelveticaNeue", Helvetica, Verdana, Arial, sans-serif;
+}
+
+.header_font() {
+  .sans;
+  font-weight: 500;
+  .a_hover;
+}
+
+.monospace {
+  font-family: Menlo, "Deja Vu Sans Mono", Consolas, monospace;
+}
+
+#toc {
+  background-color: @lightest_gray;
+  padding: 0.5em 1em;
+  width: 12em;
+}
+
+.a_nocolor {
+  a {
+    color: inherit;
+  }
+}
+
+.a_stealth {
+  .a_nocolor;
+  a, a:hover {
+    text-decoration: none;
+  }
+}
+
+.a_hover {
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.blur(@radius) {
+  filter: blur(@radius);
+  -webkit-filter: blur(@radius);
+}
+
+hr.separator {
+  padding-bottom: 2em;
+}
+div.separator {
+  padding-bottom: 4em;
+}
+
+@zPlane1: 5;
+@zPlane2: 90;
+@zPlane3: 100;
+@zPlane4: 200;
+@zPlane5: 300;
+@zPlaneTop: 1000;
+
+@userThumbHeight: 228px;
+@userThumbWidth: 228px;
+@panelHandleWidth: 7px;
+@tabs_height: 30px;
+
+.dropdown {
+  &:hover > ul.dropdown-menu {
+    display: block;
+  }
+  ul.dropdown-menu {
+    margin-top: -1px;
+  }
+}
+
+.user-color-square {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0 5px 1px 2px;
+  vertical-align: middle;
+  border: 1px solid @thumbnailGrayShadow;
+  opacity: 0.6;
+}
+.border-image (@color1, @color2) {
+  border-image: -webkit-linear-gradient(-90deg, @color1, @color2) 20 stretch;
+  border-image: -moz-linear-gradient(-90deg, @color1, @color2) 20 stretch;
+  border-image: -ms-linear-gradient(-90deg, @color1, @color2) 20 stretch;
+  border-image: -linear-gradient(-90deg, @color1, @color2) 20 stretch;
+}
