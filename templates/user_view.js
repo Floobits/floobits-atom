@@ -8,6 +8,7 @@ var Connection, UserView, UserlistView, ChatUserlistView, IsMeUserView, NotMeUse
   React = require('react-atom-fork'),
   flux = require('flukes'),
   modal = require("../modal"),
+  $ = require('atom-space-pen-views').$,
   // PermissionView = require("./permission_view"),
   perms = require("../common/permission_model"),
   editorAction = require("../common/editor_action"),
