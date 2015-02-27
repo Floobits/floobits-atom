@@ -90,7 +90,7 @@ module.exports = React.createClass({
     });
   },
   local_: function () {
-    var fetch = _.merge(this.props.missing, this.props.different);
+    const fetch = _.merge(this.props.missing, this.props.different);
     this.setState({enabled: false});
     _.each(fetch, function (b, id) {
       floop.send_get_buf(id);
