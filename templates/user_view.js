@@ -5,13 +5,18 @@
 
 var Connection, UserView, UserlistView, ChatUserlistView, IsMeUserView, NotMeUserView,
   GravatarThumbnailView, ImageThumbnailView, VideoThumbnailView, ListViewMixin,
+  React = require('react-atom-fork'),
   flux = require('flukes'),
   modal = require("../modal"),
   // PermissionView = require("./permission_view"),
-  perms = require("./permission_model"),
-  editorAction = require("./editor_action"),
-  webrtcAction = require("./webrtc_action"),
+  perms = require("../common/permission_model"),
+  editorAction = require("../common/editor_action"),
+  webrtcAction = require("../common/webrtc_action"),
   utils = require("../utils");
+
+
+// const ANONYMOUS_PNG = "/static/images/anonymous.png";
+const ANONYMOUS_PNG = "atom://floobits/resources/anonymous.png";
 
 
 Connection = React.createClass({
@@ -205,7 +210,7 @@ GravatarThumbnailView = React.createClass({
       src += "?s=228";
     } else {
       // No gravatar. Use placeholder.
-      src = "/static/images/anonymous.png";
+      src = ANONYMOUS_PNG;
     }
     return (
       <img src={src} className="user-thumb" title={canEdit ? "Start video chat" : null} onClick={this.onClick} />
@@ -274,7 +279,7 @@ VideoThumbnailView = React.createClass({
   },
   body: function () {
     var classNames = ["user-thumb"],
-      poster = "/static/images/anonymous.png";
+      poster = ANONYMOUS_PNG;
 
     if (this.props.user.gravatar) {
       poster = this.props.user.gravatar + "?s=228";
@@ -337,24 +342,25 @@ ListViewMixin = {
           hasRendered = true;
           args.src = connection.streamURL;
           args.key += "video";
-          thumbnailNodes.push(React.createElement(VideoThumbnailView, args));
+          // React.createElement
+          thumbnailNodes.push(VideoThumbnailView(args));
         } else if (connection.image) {
           hasRendered = true;
           args.key += "image";
-          thumbnailNodes.push(React.createElement(ImageThumbnailView, args));
+          thumbnailNodes.push(ImageThumbnailView(args));
         }
 
         if (!hasRendered) {
           hasRendered = true;
           args.key += "gravatar";
-          thumbnailNodes.push(React.createElement(GravatarThumbnailView, args));
+          thumbnailNodes.push(GravatarThumbnailView(args));
         }
 
         if (connection.screenStreamURL) {
           args.src = connection.screenStreamURL;
           args.key += "screen";
           args.screenShare = true;
-          thumbnailNodes.push(React.createElement(VideoThumbnailView, args));
+          thumbnailNodes.push(VideoThumbnailView(args));
         }
       }, this);
     }, this);
