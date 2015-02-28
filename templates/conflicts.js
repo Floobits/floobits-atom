@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-"use 6to5";
+"use babel";
 
 var _ = require("lodash");
 var path = require("path");
@@ -21,7 +21,7 @@ module.exports = React.createClass({
           return;
         }
         node[p] = {};
-        node = node[p]
+        node = node[p];
       });
     });
     return tree;
@@ -30,7 +30,7 @@ module.exports = React.createClass({
     return {
       enabled: true,
       clicked: "",
-    }
+    };
   },
   componentDidMount: function () {
     var local = this.refs.local;
@@ -52,7 +52,7 @@ module.exports = React.createClass({
           }
         </ol>
       </div>
-    )
+    );
   },
   remote_: function () {
     this.setState({enabled: false});
