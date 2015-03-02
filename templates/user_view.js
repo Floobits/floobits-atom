@@ -270,7 +270,36 @@ VideoThumbnailView = React.createClass({
       utils.exitFullscreen();
       return;
     }
-    utils.requestFullscreen(elem);
+
+    const div = document.createElement("div");
+    div.id = "asdfasdfasdfasdfasdffeif";
+    div.style.width = "100%";
+    div.style.height = "100%";
+    div.style.backgroundColor = "#000";
+    const p = atom.workspace.addModalPanel({item: div});
+    const src = this.props.src;
+    const poster = this.props.user.gravatar || ANONYMOUS_PNG;
+    const muted = this.props.connection.isMe ? "muted": null;
+    const onClick = function () {
+      p.destroy();
+    }
+    React.renderComponent(<video
+           src={src}
+           autoPlay="autoplay"
+           poster={poster}
+           onClick={onClick}
+           style={{width: "100%", height: "100%"}}
+           muted={muted}>
+    </video>, div);
+    const style = div.parentElement.style;
+    style.width = "100%";
+    style.height = "100%";
+    style.bottom = "0";
+    style.left = "0";
+    style.right = "0";
+    style.top = "0";
+    style.margin = "0 auto";
+    // utils.requestFullscreen(elem);
   },
   stop: function () {
     if (this.props.screenShare) {
@@ -296,7 +325,7 @@ VideoThumbnailView = React.createClass({
 
     return (
       <div>
-        <i className="glyphicon user-indicator user-stop" title="Close" onClick={this.stop}></i>
+        <i className="icon user-indicator close-icon" title="Close" onClick={this.stop}></i>
         <div className="visualizer" ref="volume"></div>
         <video className={classNames.join(" ")}
                ref={"user-thumb-" + this.props.connection.id}
