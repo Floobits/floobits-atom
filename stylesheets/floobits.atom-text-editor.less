@@ -5,6 +5,7 @@
 @import "ui-variables";
 @import "./userlist.less";
 @import "bootstrap.less";
+@import "octicon-mixins";
 
 @transition-time: 0.5s;
 @size: 2px;
@@ -55,4 +56,15 @@
 floobits-conflicts div {
   padding: 10px;
   color: white;
+}
+
+.close-icon {
+  .octicon(x, 24px);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 100000;
+  cursor: default;
 }
