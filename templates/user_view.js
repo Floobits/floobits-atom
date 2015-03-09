@@ -39,7 +39,7 @@ Connection = React.createClass({
         <span className="pull-right">{connection.path}</span>
         { this.props.isAdmin &&
           <span className="btn-group pull-right" onClick={this.kick_}>
-           <a href="#"><i className="glyphicon glyphicon-eject"></i> Kick</a>
+           <a href="#"><i className="floobits-eject-icon"></i> Kick</a>
           </span>
         }
       </div>
@@ -74,7 +74,7 @@ IsMeUserView = React.createClass({
         <div style={{display: "inline-block"}}>
           <a href="https://chrome.google.com/webstore/detail/floobits-screen-sharing/lmojaknpofhmdnbpanagbbeinbjmbodo"></a>
           <a href="#" onClick={this.shareScreen}>
-            <i className="glyphicon glyphicon-facetime-video"></i> {this.state.sharing ? "Stop Screen Sharing" : "Share Screen" }
+            <i className="floobits-video-icon"></i> {this.state.sharing ? "Stop Screen Sharing" : "Share Screen" }
           </a>
         </div>
         <div style={{display: "inline-block", paddingTop: 8}}>
@@ -105,7 +105,7 @@ NotMeUserView = React.createClass({
         </span>
         {isAdmin &&
           <div onClick={this.kick_} className="pull-right" style={{clear: "both"}}>
-            <a href="#"><i className="glyphicon glyphicon-eject"></i> Kick</a>
+            <a href="#"><i className="floobits-eject-icon"></i> Kick</a>
           </div>
         }
         {!this.props.isListView &&
@@ -191,7 +191,7 @@ UserView = {
         <div className="user-bar" onClick={this.settingsClick}>
           <span className={"user-color-square highlight_" + user.color} style={{backgroundColor: user.color}}></span>
           <span className="user-username">{user.id}</span>
-          <i className="glyphicon user-arrow"></i>
+          <i className="floobits-arrow-up-icon"></i>
         </div>
       </div>
     );
@@ -296,7 +296,7 @@ VideoThumbnailView = React.createClass({
 
     return (
       <div>
-        <i className="glyphicon user-indicator user-stop" title="Close" onClick={this.stop}></i>
+        <i className="user-indicator floobits-close-icon" title="Close" onClick={this.stop}></i>
         <div className="visualizer" ref="volume"></div>
         <video className={classNames.join(" ")}
                ref={"user-thumb-" + this.props.connection.id}
