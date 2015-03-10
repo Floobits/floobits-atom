@@ -47,7 +47,7 @@ module.exports = React.createClass({
           {
             _.map(items, function(b, id) {
               var path = b.path;
-              return (<li className="" onClick={this.onClick.bind(this, id, path)}>{path}</li>);
+              return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path}</li>);
             }, this)
           }
         </ol>
