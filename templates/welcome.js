@@ -29,8 +29,7 @@ const Welcome = React.createClass({
                     <h2>Write code together, anywhere.</h2>
                   </div>
                   <div className="hero-info">
-                    Floobits lets you collaboratively edit files in real time across text editors.
-                    We currently support Sublime Text 3, NeoVim, Emacs, Intellij, Atom, and the web.
+                    Collaboratively edit files in real time across text editors.
                   </div>
                 </div>
                 <div className="col-md-6 signup-form-container">
