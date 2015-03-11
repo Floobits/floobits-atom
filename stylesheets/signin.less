@@ -1,0 +1,190 @@
+@import "util.less";
+.fl-signin-form-container {
+  font-family: "ProximaNova", sans-serif;
+  a {
+    color: @fl-green;
+    outline: none !important;
+    &:hover {
+      color: @red-text;
+    }
+    button.btn {
+      color: @fl-white;
+    }
+    text-decoration: none;
+  }
+  text-align: center; 
+  .signin-title {
+    color: @fl-green;
+    font-size: 30px;
+    font-family: "RobotoSlabRegular", serif;
+    text-align: center;
+    margin: 25px 0 5px;
+  }
+  form {
+    width: 325px;
+    div.signup-input-container {
+      text-align: left;
+      display: inline-block;
+      width: 275px;
+      height: 42px;
+      &:nth-child(2) {
+        margin: 15px 0 0;
+      }
+      padding-top: 0px !important;
+      padding: 0px;
+    }
+    div.signin-other-container {
+      .signin-btn {
+        margin: 10px 0;
+        display: inline-block;
+        height: 45px;
+        width: 275px;
+        border: 1px solid @dark-red;
+        border-bottom-color: @darker-red;
+        .border-image(@dark-red, @darker-red);
+        &:hover {
+          border-color: @dark-teal;
+          border-image: none;
+        }
+        &:focus {
+          border-color: @dark-teal;
+          border-image: none;
+        }
+      }
+    }
+    .signin-github {
+      margin: 15px 0 70px;
+    }
+  }
+  .signin-forgot-password {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: @fl-light-gray;
+    text-align: center;
+    padding: 15px 0;
+    a {
+      color: @fl-light-black;
+      font-size: 12px;
+    }
+  }
+  .modal-content {
+    border-radius: 0;
+    width: 325px;
+    .signin-close {
+      color: @fl-gray;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  }
+}
+div.signup-input-container, div.signup-github {
+  background-color: @fl-white;
+  padding: 5px 20px;
+  span.signup-icon {
+    display: inline-block;
+    /*#gradient > .vertical(@end-color: rgba(0, 0, 0, .1); @start-color: rgba(255, 255, 255, .1));*/
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+    border: 0px solid @fl-gray;
+    border-right-width: 1px;
+    position: relative;
+    &::after {
+      opacity: 0.5;
+      content: " ";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+    }
+    &.signup-username-icon::after {
+      background: transparent url("atom://floobits/resources/username_icon.png") no-repeat 11px 10px;
+    }
+    &.signup-email-icon::after {
+      background: transparent url("atom://floobits/resources/email_icon.png") no-repeat 10px 11px;
+    }
+    &.signup-password-icon::after {
+      background: transparent url("atom://floobits/resources/password_icon.png") no-repeat 10px 11px;
+    }
+    &.signup-password-conf-icon::after {
+      background: transparent url("atom://floobits/resources/password_conf_icon.png") no-repeat 10px 9px;
+    }
+
+  }
+  &.active-signup-icon {
+    div {
+      border-color: @fl-dark-gray;
+      span.signup-icon {
+        border-color: @fl-dark-gray;
+        &::after {
+          opacity: 1 !important;
+        }
+      }
+    }
+  }
+  input {
+    display: inline-block;
+    height: 40px;
+    width: 80%;
+    border: 1px;
+    line-height: 150%;
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+  @inputBorderPadding: 30px;
+  &:nth-child(2) {
+    padding-top: @inputBorderPadding;
+  }
+  &:nth-child(5) {
+    padding-bottom: @inputBorderPadding;
+  }
+  div {
+    border: 1px solid @fl-input-border;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  div > input:focus {
+    border-color: @fl-light-black;
+  }
+}
+.red-btn {
+  color: @fl-white;
+  border-radius: 1px;
+  /*#gradient > .vertical(@end-color: rgb(211, 65, 65); @start-color: rgb(231, 92, 92));*/
+  &:hover {
+    color: @fl-white;
+    border-color: rgb(44, 167, 177);
+    /*#gradient > .vertical(@end-color: rgb(44, 167, 177); @start-color: rgb(53, 188, 198));*/
+  }
+  &:focus {
+    color: @fl-white;
+    border-color: rgb(44, 167, 177);
+    /*#gradient > .vertical(@end-color: rgb(44, 167, 177); @start-color: rgb(53, 188, 198));*/
+  }
+}
+.signup-btn {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  border: 0px solid rgb(231, 92, 92);
+  border-top-width: 1px;
+  height: 65px;
+  .red-btn;
+}
+a.signup-btn {
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 17px;
+  &:hover {
+    color: @fl-white;
+    text-decoration: none;
+  }
+  width: 250px;
+  margin: 70px 0 50px 0;
+  font-size: 20px;
+}
