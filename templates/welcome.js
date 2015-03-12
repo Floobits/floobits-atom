@@ -13,9 +13,23 @@ const utils = require("../utils");
 const ANONYMOUS_PNG = "atom://floobits/resources/anonymous.png";
 const that = this;
 const Welcome = React.createClass({
+  errorForRef: function (ref, error) {
+
+  },
+  valueForRef: function (refName) {
+    return this.refs[refName].getDOMNode().value.trim();
+  },
   componentDidMount: function () {
     const node = this.refs.username.getDOMNode();
     node.focus();
+  },
+  onSubmit_: function (event) {
+    event.preventDefault();
+    const username = this.valueForRef("username");
+    const email = this.valueForRef("email");
+    const password1 = this.valueForRef("password1");
+    const password2 = this.valueForRef("password2");
+    this.props.create_account(username, password1, email);
   },
   render: function () {
     return (
@@ -31,40 +45,40 @@ const Welcome = React.createClass({
                   </div>
                   <div className="hero-info">
                     <ul>
-                      <li>real time, collaborative editing</li>
+                      <li>collaborative real-time editing</li>
                       <li>video chating</li>
                       <li>shared terminals, and more</li>
                     </ul>
                   </div>
                 </div>
                 <div className="col-md-6 signup-form-container">
-                  <form className="signup-form" action="/signup" method="post">
+                  <form className="signup-form" onSubmit={this.onSubmit_}>
                     <span className="signup-title">Let’s Start!</span>
                     <div className="signup-input-container">
                       <div>
                         <span className="signup-username-icon signup-icon">&nbsp;</span>
-                        <input ref="username" className="signup-input" type="text" name="signup-username" placeholder="Username" tabIndex="1" />
+                        <input ref="username" className="signup-input native-key-bindings" type="text" placeholder="Username" tabIndex="1" />
                       </div>
                     </div>
                     <div className="signup-input-container">
                       <div>
                         <span className="signup-email-icon signup-icon">&nbsp;</span>
-                        <input className="signup-input" type="text" name="signup-email" placeholder="Email" tabIndex="2" />
+                        <input className="signup-input native-key-bindings" type="text" ref="email" placeholder="Email" tabIndex="2" />
                       </div>
                     </div>
                     <div className="signup-input-container">
                       <div>
                         <span className="signup-password-icon signup-icon">&nbsp;</span>
-                        <input className="signup-input" type="password" name="signup-password1" placeholder="Password" tabIndex="3" />
+                        <input className="signup-input native-key-bindings" type="password" ref="password1" placeholder="Password" tabIndex="3" />
                       </div>
                     </div>
                     <div className="signup-input-container">
                       <div>
                         <span className="signup-password-conf-icon signup-icon">&nbsp;</span>
-                        <input className="signup-input" type="password" name="signup-password2" tabIndex="4" placeholder="Password confirmation" />
+                        <input className="signup-input native-key-bindings" type="password" ref="password2" tabIndex="4" placeholder="Password confirmation" />
                       </div>
                     </div>
-                    <button className="signup-btn" tabIndex="5">Sign up</button>
+                    <input type="submit" className="signup-btn native-key-bindings" tabIndex="5" value="Sign up" />
                   </form>
                   <div className="signup-form">
                     <div className="signup-github">Or
