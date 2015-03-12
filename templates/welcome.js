@@ -13,12 +13,13 @@ const utils = require("../utils");
 const ANONYMOUS_PNG = "atom://floobits/resources/anonymous.png";
 const that = this;
 const Welcome = React.createClass({
+  componentDidMount: function () {
+    const node = this.refs.username.getDOMNode();
+    node.focus();
+  },
   render: function () {
-    var connection = this.props.connection;
-
     return (
       <div id="floo-welcome-wrapper">
-        
         <div id="floo-main">
           <div className="floo-home-slider" style={{}}>
             <div className="container">
@@ -29,7 +30,11 @@ const Welcome = React.createClass({
                     <h2>Write code together, anywhere.</h2>
                   </div>
                   <div className="hero-info">
-                    Collaboratively edit files in real time across text editors.
+                    <ul>
+                      <li>real time, collaborative editing</li>
+                      <li>video chating</li>
+                      <li>shared terminals, and more</li>
+                    </ul>
                   </div>
                 </div>
                 <div className="col-md-6 signup-form-container">
@@ -38,7 +43,7 @@ const Welcome = React.createClass({
                     <div className="signup-input-container">
                       <div>
                         <span className="signup-username-icon signup-icon">&nbsp;</span>
-                        <input className="signup-input" type="text" name="signup-username" placeholder="Username" tabIndex="1" />
+                        <input ref="username" className="signup-input" type="text" name="signup-username" placeholder="Username" tabIndex="1" />
                       </div>
                     </div>
                     <div className="signup-input-container">
