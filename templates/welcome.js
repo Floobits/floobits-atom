@@ -39,6 +39,20 @@ const LoginForm = React.createClass({
 });
 
 const CreateAccountForm = React.createClass({
+  errorForRef: function (ref, error) {
+
+  },
+  valueForRef: function (refName) {
+    return this.refs[refName].getDOMNode().value.trim();
+  },
+  onSubmit_: function (event) {
+    event.preventDefault();
+    const username = this.valueForRef("username");
+    const email = this.valueForRef("email");
+    const password1 = this.valueForRef("password1");
+    const password2 = this.valueForRef("password2");
+    this.props.create_account(username, password1, email);
+  },
   componentDidMount: function () {
     const node = this.refs.username.getDOMNode();
     node.focus();
@@ -81,20 +95,6 @@ const Welcome = React.createClass({
       create: true,
     };
   },
-  errorForRef: function (ref, error) {
-
-  },
-  valueForRef: function (refName) {
-    return this.refs[refName].getDOMNode().value.trim();
-  },
-  onSubmit_: function (event) {
-    event.preventDefault();
-    const username = this.valueForRef("username");
-    const email = this.valueForRef("email");
-    const password1 = this.valueForRef("password1");
-    const password2 = this.valueForRef("password2");
-    this.props.create_account(username, password1, email);
-  },
   toggle_: function () {
     this.setState({create: !this.state.create});
   },
@@ -119,7 +119,7 @@ const Welcome = React.createClass({
                   </div>
                 </div>
                 <div className="col-md-6 signup-form-container">
-                  {this.state.create ? <CreateAccountForm /> : <LoginForm /> }
+                  {this.state.create ? <CreateAccountForm create_account={this.props.create_account} /> : <LoginForm /> }
                   <div className="signup-form">
                     <div className="signup-github">
                       <a href="" onClick={this.toggle_}>

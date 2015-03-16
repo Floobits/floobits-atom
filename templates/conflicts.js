@@ -88,6 +88,7 @@ module.exports = React.createClass({
         });
       });
     });
+    this.props.onHandledConflicts();
   },
   local_: function () {
     const fetch = _.merge(this.props.missing, this.props.different);
@@ -95,6 +96,7 @@ module.exports = React.createClass({
     _.each(fetch, function (b, id) {
       floop.send_get_buf(id);
     });
+    this.props.onHandledConflicts();
   },
   cancel_: function () {
     this.setState({enabled: false});
