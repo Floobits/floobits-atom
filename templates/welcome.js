@@ -12,6 +12,7 @@ const utils = require("../utils");
 const constants = require("../common/constants");
 const floorc = require("../common/floorc");
 const api = require("../common/api");
+const open_url = require("open");
 const message_action = require("../common/message_action");
 
 
@@ -28,8 +29,13 @@ const Mixin = {
 const LoginForm = React.createClass({
   getInitialState: function () {
     return {
-      error: null
+      error: null,
+      reset: false
     };
+  },
+  password_reset: function () {
+    const host = constants.HOST;
+    open_url(`https://${host}/password/reset`);
   },
   mixins: [Mixin],
   onSubmit_: function (event) {
@@ -42,6 +48,7 @@ const LoginForm = React.createClass({
       if (res.statusCode === 401) {
         that.setState({
           error: "Invalid username or password",
+          reset: true
         });
         return;
       }
@@ -76,6 +83,10 @@ const LoginForm = React.createClass({
       } catch (e) {
         return message_action.error(err);
       }
+      that.setState({
+        error: null,
+        reset: null,
+      });
     });
   },
   componentDidMount: function () {
@@ -102,6 +113,11 @@ const LoginForm = React.createClass({
           <input className="signup-input native-key-bindings" type="password" ref="password1" placeholder="Password" tabIndex="3" />
         </div>
       </div>
+      { this.state.reset && 
+        <div className="signup-input-container">
+          <a href="" onClick={this.password_reset}>Reset Password in Browser</a>
+        </div>
+      }
       <input type="submit" className="signup-btn native-key-bindings" tabIndex="5" value="Sign In" />
     </form>
   }
