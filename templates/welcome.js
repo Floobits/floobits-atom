@@ -18,7 +18,6 @@ const message_action = require("../common/message_action");
 
 // const ANONYMOUS_PNG = "/static/images/anonymous.png";
 const ANONYMOUS_PNG = "atom://floobits/resources/anonymous.png";
-const that = this;
 
 const Mixin = {
   valueForRef: function (refName) {
