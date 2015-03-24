@@ -25,6 +25,19 @@ const JoinWorkspace = React.createClass({
   },
   componentDidMount: function () {
     this.refs.dir.getDOMNode().setAttribute("webkitdirectory", true);
+    
+    setTimeout(function () {
+      $("#floobits-url").focus();
+    }, 0);
+
+    var that = this;
+    $("#join-workspace").keyup(function(e) {
+      if (e.keyCode !== 27) { 
+        return;
+      }
+      that.destroy();
+    });
+
     const root = atom.project.rootDirectories;
     if (!root.length) {
       return;
@@ -34,6 +47,9 @@ const JoinWorkspace = React.createClass({
       return;
     }
     this.setState({path: path});
+  },
+  destroy: function () {
+    this.getDOMNode().parentNode.destroy(); 
   },
   onTyping: function (event) {
     const path = event.target.value;
@@ -50,14 +66,14 @@ const JoinWorkspace = React.createClass({
       <div>
         <h2>Join Workspace</h2>
         <div className="well">
-          <form onSubmit={this.onSubmit}>
+          <form id="join-workspace" onSubmit={this.onSubmit} className="native-key-bindings">
             <input id="ultra-secret-hidden-file-input" type="file" ref="dir" style={{display: "none"}} onChange={this.onChange_} />
             
             <div className="row">
               <div className="col-lg-12">
                 <div className="input-group">
                   <span className="input-group-addon" id="url-addon">URL</span>
-                  <input ref="url" className="native-key-bindings form-control" placeholder={this.props.url} aria-describedby="url-addon" />
+                  <input id="floobits-url" ref="url" className="native-key-bindings form-control" placeholder={this.props.url} aria-describedby="url-addon" />
                 </div>
               </div>
             </div>
