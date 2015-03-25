@@ -1,13 +1,14 @@
 /** @jsx React.DOM */
-"use babel";
 
-var _ = require("lodash");
-var path = require("path");
-var React = require('react-atom-fork');
-var floop = require("../common/floop");
-var fs = require("fs");
-$ = require('atom-space-pen-views').$;
-var utils = require("../utils");
+"use strict";
+
+const _ = require("lodash");
+const path = require("path");
+const React = require('react-atom-fork');
+const floop = require("../common/floop");
+const fs = require("fs");
+const $ = require('atom-space-pen-views').$;
+const utils = require("../utils");
 
 module.exports = React.createClass({
   treeize_: function (obj) {
