@@ -1,5 +1,5 @@
-"use babel";
 /** @jsx React.DOM */
+"use babel";
 
 var _ = require("lodash");
 var path = require("path");
