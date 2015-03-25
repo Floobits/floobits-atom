@@ -25,12 +25,20 @@ const JoinWorkspace = React.createClass({
     const path = files[0].path;
     this.setState({path: path});
   },
+  tabs: ["url", "dir", "cancel", "submit"],
   onTab: function (event) {
     event.preventDefault();
-    const position = parseInt(event.target.attributes["data-tab_order"].value, 10)
-    const c = event.shiftKey ? -1 : 1;
-    const next = (position + c) % 3
-    const refName = {0: "url", 1: "dir", 2: "submit"}[next];
+    const position = parseInt(event.target.attributes["data-tab_order"].value, 10);
+    const direction = event.shiftKey ? - 1 : 1;
+    let next = position + direction;
+    // no negative indexing in JS :(
+    if (next < 0) {
+      next = this.tabs.length - 1;
+    } else if (next >= this.tabs.length) {
+      next = 0;
+    }
+
+    const refName = this.tabs[next];
     const ref = this.refs[refName].getDOMNode();
     ref.focus();
   },
@@ -114,8 +122,9 @@ const JoinWorkspace = React.createClass({
             </div>
 
             <div className="row">
-              <div className="col-lg-12">
-                <input data-tab_order="2" ref="submit" onClick={this.onSubmit} type="submit" value="Join" className="floobits-submit" />
+              <div className="col-lg-6">
+                <input data-tab_order="3" ref="submit" onClick={this.onSubmit} type="submit" value="Join" className="floobits-submit" />
+                <input data-tab_order="2" ref="cancel" onClick={this.destroy} type="submit" value="Cancel" className="floobits-submit" />
               </div>
             </div>
           </form>
