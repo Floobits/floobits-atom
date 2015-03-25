@@ -2,8 +2,7 @@
 
 "use strict";
 
-var $ = require('atom-space-pen-views').$;
-
+const $ = require('atom-space-pen-views').$;
 const React = require('react-atom-fork');
 
 const JoinWorkspace = React.createClass({
