@@ -106,7 +106,7 @@ const JoinWorkspace = React.createClass({
               <div className="col-lg-12">
                 <div className="input-group">
                   <span className="input-group-addon" id="url-addon">URL</span>
-                  <input data-tab_order="0" id="floobits-url" ref="url" className="native-key-bindings form-control" placeholder={this.props.url} aria-describedby="url-addon" />
+                  <input data-tab_order="0" id="floobits-url" ref="url" className="native-key-bindings form-control" value={this.props.url} aria-describedby="url-addon" />
                 </div>
               </div>
             </div>
