@@ -13,6 +13,7 @@
         { 'label': 'join workspace', 'command': 'floobits: join workspace' }
         { 'label': 'join recent workspace', 'command': 'floobits: join recent workspace' }
         { 'label': 'leave workspace', 'command': 'floobits: leave workspace' }
+        { 'label': 'create workspace', 'command': 'floobits: create workspace' }
       ]
     ]
   }
