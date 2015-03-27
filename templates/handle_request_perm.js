@@ -3,9 +3,28 @@
 "use strict";
 
 const React = require('react-atom-fork');
+const floop = require("../common/floop");
+const permsEvent = {};
 
 module.exports = React.createClass({
-  render: function () {
+  destroy: function () {
+    this.getDOMNode().parentNode.destroy();
+  },
+  grant: function() {
+    permsEvent.action = "add";
+    this.send();
+  },
+  deny: function() {
+    permsEvent.action = "reject";
+    this.send();
+  },
+  send: function() {
+    floop.send_perms(permsEvent);
+    this.destroy();
+  },
+  render: function() {
+    permsEvent['user_id'] = this.props.userId;
+    permsEvent['perms'] = this.props.perms;
     return (
       <div>
         <div className="row">
@@ -14,9 +33,9 @@ module.exports = React.createClass({
         <div className="well">
           <div className="row">
             <div className="col-lg-12 btn-group">
-              <button className="btn btn-warning">Grant Access</button>
-              <button className="btn btn-primary">Deny Access</button>
-              <button className="btn btn-default">Ignore</button>
+              <button className="btn btn-warning" onClick={this.grant}>Grant Access</button>
+              <button className="btn btn-primary" onClick={this.deny}>Deny Access</button>
+              <button className="btn btn-default" onClick={this.destroy}>Ignore</button>
             </div>
           </div>
         </div>
