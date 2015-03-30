@@ -76,7 +76,6 @@ module.exports = React.createClass({
   },
   componentDidMount: function () {
     this.refs.name.getDOMNode().focus();
-    mixins.FormMixin.componentDidMount.call(this);
   },
   join: function (url) {
     const d = atom.project.getRootDirectory().getPath();

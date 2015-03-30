@@ -38,8 +38,6 @@ const JoinWorkspace = React.createClass({
       $("#floobits-url").focus();
     }, 0);
 
-    mixins.FormMixin.componentDidMount.call(this);
-
     const root = atom.project.rootDirectories;
     if (!root.length) {
       return;
