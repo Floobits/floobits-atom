@@ -95,6 +95,9 @@ NotMeUserView = React.createClass({
   editPerms_: function () {
     modal.showModal(PermissionView, {user: this.props.user, me: this.props.me, title: "Edit Permissions for " + this.props.user.id});
   },
+  followUser_: function () {
+    editorAction.follow(this.props.user.id);
+  },
   render: function () {
     var isAdmin = this.props.isAdmin;
     return (
@@ -109,9 +112,9 @@ NotMeUserView = React.createClass({
           </div>
         }
         {!this.props.isListView &&
-          <div onClick={this.followUser_} className="pull-right" style={{clear: "both"}}>
-            <a href="#"><i className="glyphicon glyphicon-magnet"></i> Follow</a>
-          </div>
+        <div onClick={this.followUser_} className="pull-right" style={{clear: "both"}}>
+          <a href="#"><i className="glyphicon glyphicon-magnet"></i> {this.props.isFollowing ? "Unfollow" : "Follow"}</a>
+        </div>
         }
         {isAdmin &&
           <div onClick={this.editPerms_} className="pull-right" style={{clear: "both"}}>
@@ -182,7 +185,7 @@ UserView = {
             <div className="stack-up-content">
               {this.props.connection.isMe ?
                 <IsMeUserView user={user} isAdmin={isAdmin} connection={this.props.connection} /> :
-                <NotMeUserView user={user} isAdmin={isAdmin} isListView={isListView} />
+                <NotMeUserView user={user} isAdmin={isAdmin} isListView={isListView} isFollowing={isFollowing} />
               }
             </div>
             <hr style={{clear: "both"}}/>

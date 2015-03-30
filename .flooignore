@@ -2,3 +2,4 @@ extern
 node_modules
 tmp
 vendor
+lib/build
