@@ -14,8 +14,8 @@ module.exports = React.createClass({
     return (
       <div id="user-list-pane">
         <div id="user-list-pane-header">
-          <img src="atom://floobits/resources/icon_64x64.png" />Floobits Users List
-          <span className="pull-right" style={{cursor: "pointer"}} onClick={this.destroy}>x</span>
+          <img src="atom://floobits/resources/icon_64x64.png" />Floobits Users
+          <span id="user-list-close" onClick={this.destroy}>x</span>
         </div>
         <UserlistView users={this.props.users} me={this.props.me} prefs={this.props.prefs} />
       </div>
