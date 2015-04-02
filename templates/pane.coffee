@@ -18,7 +18,7 @@ class PaneView extends View
       $tabView.find('.title').css paddingLeft: '2.7em'
 
   @content: (params) ->
-    @div()
+    @div 'style': "overflow: auto;"
 
 class Pane
   constructor: (@title, @icon, @inner) ->
