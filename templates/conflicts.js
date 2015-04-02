@@ -107,7 +107,12 @@ module.exports = React.createClass({
     var missing = this.render_("missing", this.props.missing);
     var different = this.render_("different", this.props.different);
     var newFiles = this.render_("newFiles", this.props.newFiles);
-
+    var ignored = _.map(this.props.ignored, function (p) {
+      return <li key={p}>{p}</li>;
+    });
+    var tooBig = _.map(this.props.tooBig, function (size, p) {
+      return <li key={p}>{p}: {size}</li>;
+    });
     return (
       <div className="native-key-bindings" style={{overflow: "auto"}}>
         <h1>Your local files are different from the workspace.</h1>
@@ -118,6 +123,22 @@ module.exports = React.createClass({
         {missing}
         {different}
         {newFiles}
+        {!this.props.ignored.length ? "" : 
+          <div className="">
+            <h3>Ignored</h3>
+            <ol>
+              { ignored }
+            </ol>
+          </div>
+        }
+        {!tooBig.length ? "" : 
+          <div className="">
+            <h3>Too Big</h3>
+            <ol>
+              { tooBig }
+            </ol>
+          </div>
+        }
       </div> 
     );
   }
