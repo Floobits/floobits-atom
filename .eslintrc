@@ -8,10 +8,15 @@
   "env": {
     "node": true
   },
+  "globals": {
+    "atom": false,
+    "document": false,
+    "MediaStreamTrack": false
+  },
   "rules": {
     "camelcase": [0, false],
     "comma-dangle": [0, false],
-    "consistent-this": [1, "self"],
+    "consistent-this": [1, "that"],
     "default-case": [2, true],
     "guard-for-in": [2, true],
     "indent": [2, 2],
