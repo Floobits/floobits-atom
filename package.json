@@ -37,23 +37,26 @@
     "async": "0.9.x",
     "diff_match_patch": "0.1.x",
     "flukes": "0.1.x",
-    "fs-extra": "0.16.x",
+    "fs-extra": "0.x",
     "fs-plus": "2.5.x",
-    "lodash": "3.2.x",
-    "minimatch": "2.0.x",
+    "lodash": "3.x",
+    "minimatch": "2.x",
     "mkdirp": "0.5.x",
     "open": "0.x",
     "request": "2.x",
-    "react-atom-fork": "0.11.5",
-    "react-tools": "0.11.2",
-    "reactionary-atom-fork": "",
-    "atom-space-pen-views": "2.0.4"
+    "react-atom-fork": "0.11.x",
+    "react-tools": "0.11.x",
+    "reactionary-atom-fork": "1.x",
+    "atom-space-pen-views": "2.0.4",
+    "bootstrap": "3.x"
   },
   "devDependencies": {
+    "eslint": "0.x",
     "jshint": "2.4.x"
   },
   "scripts": {
     "build": "node_modules/.bin/jsx --harmony templates lib/build",
+    "lint": "./node_modules/eslint/bin/eslint.js lib/*.js lib/common/*.js",
     "watch": "node_modules/.bin/jsx --watch --harmony templates lib/build"
   }
 }
