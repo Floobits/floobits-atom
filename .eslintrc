@@ -11,7 +11,8 @@
   "globals": {
     "atom": false,
     "document": false,
-    "MediaStreamTrack": false
+    "MediaStreamTrack": false,
+    "window": false
   },
   "rules": {
     "camelcase": [0, false],
