@@ -20,7 +20,7 @@ Proto.createdCallback = function () {
 
 Proto.load = function (host) {
   this.host = host;
-  this.frame.src = host + "/login/atom";
+  this.frame.src = host + "/signup/atom";
 };
 
 Proto.handle_login = function (auth) {
