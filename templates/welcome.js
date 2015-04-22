@@ -112,6 +112,9 @@ const LoginForm = React.createClass({
           <input className="signup-input native-key-bindings" type="password" ref="password1" placeholder="Password" tabIndex="3" />
         </div>
       </div>
+      <div>
+        https://floobits.com/login/github
+      </div>
       { this.state.reset && 
         <div className="signup-input-container">
           <a href="" onClick={this.password_reset}>Reset Password in Browser</a>

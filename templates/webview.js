@@ -2,40 +2,71 @@
 
 "use strict";
 
+const _ = require("lodash");
+const floorc = require("../common/floorc");
+const message_action = require("../common/message_action");
+
 const Proto = Object.create(HTMLElement.prototype);
 
 Proto.createdCallback = function () {
-  this.webview = document.createElement("webview");
-  this.webview.allowtransparency = "on";
+  const frame = document.createElement("iframe");
+  frame.allowtransparency = "on";
+  frame.id = "asdfifiafjfj";
+  frame.style.border = "0 none";
+  frame.style.width = "100%";
+  frame.style.height = "100%";
+  this.frame = frame;
 };
 
-Proto.load = function (src) {
-  this.webview.src = src;
+Proto.load = function (host) {
+  this.host = host;
+  this.frame.src = host + "/login/atom";
+};
+
+Proto.handle_login = function (auth) {
+  const host = _.keys(auth)[0];
+  auth = auth[host];
+
+  if (!_.has(floorc, "auth")) {
+    floorc.auth = {};
+  }
+
+  if (!_.has(floorc.auth, host)) {
+    floorc.auth[host] = {};
+  }
+  const floorc_auth = floorc.auth[host];
+  const username = auth.username;
+  if (floorc_auth.username && floorc_auth.username !== username) {
+    console.error("username changed?", auth.username, username);
+  }
+  floorc_auth.username = username;
+  floorc_auth.api_key = auth.api_key;
+  floorc_auth.secret = auth.secret;
+  try {
+    floorc.__write();
+  } catch (e) {
+    return message_action.error(e);
+  }
 };
 
 Proto.attachedCallback = function () {
-  const webview = this.webview;
-  this.appendChild(this.webview);
-
-  webview.addEventListener("console-message", function(e) {
-    console.log("logged a message: ", e.level, e.message);
-  });
-  webview.addEventListener("did-finish-load", function () {
-    console.log("finished loading", webview.getUrl());
-  });
-  webview.addEventListener("new-window", function (e) {
-    console.log("new window", e.url);
-  });
-  webview.addEventListener("message", function (e) {
-    console.log("message", e.origin, e.message);
+  this.appendChild(this.frame);
+  const that = this;
+  window.addEventListener("message", function (e) {
+    console.log("message2", e.origin, e.data);
+    const data = JSON.parse(e.data);
+    if (!data.auth) {
+      return;
+    }
+    return that.handle_login(data.auth);
   });
 };
 
 Proto.detachedCallback = function () {
-  if (!this.webview) {
+  if (!this.frame) {
     return;
   }
-  this.webview.terminate();
+  this.frame.terminate();
 };
 
 Proto.onDestroy = function (pane) {
