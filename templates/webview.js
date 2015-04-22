@@ -5,6 +5,7 @@
 const _ = require("lodash");
 const floorc = require("../common/floorc");
 const message_action = require("../common/message_action");
+const Pane = require("../../templates/pane");
 
 const Proto = Object.create(HTMLElement.prototype);
 
@@ -20,7 +21,9 @@ Proto.createdCallback = function () {
 
 Proto.load = function (host) {
   this.host = host;
-  this.frame.src = host + "/signup/atom";
+  this.frame.src = "https://" + host + "/signup/atom";
+  this.pane = new Pane("Floobits", "", this);
+  atom.workspace.getActivePane().activateItem(this.pane);
 };
 
 Proto.handle_login = function (auth) {
@@ -63,21 +66,18 @@ Proto.attachedCallback = function () {
 };
 
 Proto.detachedCallback = function () {
-  if (!this.frame) {
-    return;
-  }
-  this.frame.terminate();
-};
-
-Proto.onDestroy = function (pane) {
-  this.pane = pane;
+  this.destroy();
 };
 
 Proto.destroy = function () {
   if (!this.pane) {
     return;
   }
-  this.pane.destroy();
+  try {
+    this.pane.destroy();
+  } catch (e) {
+    console.warn(e);
+  }
   this.pane = null;
 };
 
