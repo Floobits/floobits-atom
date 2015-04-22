@@ -50,8 +50,7 @@
     "atom-space-pen-views": "2.0.4"
   },
   "devDependencies": {
-    "eslint": "0.x",
-    "jshint": "2.4.x"
+    "eslint": "0.x"
   },
   "scripts": {
     "build": "node_modules/.bin/jsx --harmony templates lib/build",
