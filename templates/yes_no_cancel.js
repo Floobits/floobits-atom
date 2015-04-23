@@ -5,6 +5,7 @@
 const React = require('react-atom-fork');
 const mixins = require("./mixins");
 const wrapper = require("../react_wrapper");
+const atomUtils = require("../atom_utils");
 
 const YesNoCancel = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
@@ -60,9 +61,5 @@ module.exports = function (title, body, opts, cb) {
   opts.cb = cb;
 
   const view = YesNoCancel(opts);
-  const node = wrapper.create_node('yes-no-cancel', view,
-    {width: "100%", height: "100%", overflow: "auto"}
-  );
-  const pane = atom.workspace.addModalPanel({item: node});
-  node.onDestroy(pane);
+  atomUtils.addModalPanel('yes-no-cancel', view);
 };
