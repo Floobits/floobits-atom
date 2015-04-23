@@ -194,7 +194,7 @@ UserView = {
         <div className="user-bar" onClick={this.settingsClick}>
           <span className={"user-color-square highlight_" + user.color} style={{backgroundColor: user.color}}></span>
           <span className="user-username">{user.id}</span>
-          <i className="floobits-arrow-up-icon"></i>
+          <i className="user-arrow" style={{position: "absolute", top: 5, right: 5}}></i>
         </div>
       </div>
     );

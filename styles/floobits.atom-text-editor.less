@@ -6,9 +6,9 @@
 @import "./userlist.less";
 @import "./welcome.less";
 //@import "./lesshat.less";
-@import "octicon-mixins";
 @import "join.less";
 @import "user_list_pane.less";
+@import "./icons.less";
 
 @transition-time: 0.5s;
 @size: 2px;
@@ -59,59 +59,4 @@
 floobits-conflicts div {
   padding: 10px;
   color: white;
-}
-
-.floobits-close-icon {
-  .octicon(x, 24px);
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: pointer;
-}
-
-.floobits-close-icon-small {
-  .octicon(x, 16px);
-  position: absolute;
-  top: 4px;
-  right: 2px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: pointer;
-}
-
-.floobits-arrow-up-icon {
-  .octicon(chevron-up, 24px);
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
-}
-
-.floobits-eject-icon {
-  .octicon(jump-down, 24px);
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
-}
-
-.floobits-video-icon {
-  .octicon(device-camera-video, 24px);
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
 }
