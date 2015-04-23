@@ -34,8 +34,12 @@ const JoinWorkspace = React.createClass({
   componentDidMount: function () {
     $("#ultra-secret-hidden-file-input").attr("webkitdirectory", true);
     
+    const that = this;
     setTimeout(function () {
-      $("#floobits-url").focus();
+      const url = that.refs.url.getDOMNode();
+      const length = url.value.length;
+      url.setSelectionRange(length, length);
+      url.focus();
     }, 0);
 
     const root = atom.project.rootDirectories;
@@ -90,7 +94,7 @@ const JoinWorkspace = React.createClass({
             </div>
 
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-12 pull-right">
                 <input tabIndex="5" ref="submit" onClick={this.onSubmit} type="submit" value="Join" className="floobits-submit" />
                 <input tabIndex="7" ref="cancel" onClick={this.destroy} type="submit" value="Cancel" className="floobits-submit" />
               </div>
