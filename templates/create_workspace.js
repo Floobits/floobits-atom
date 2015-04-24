@@ -77,10 +77,10 @@ module.exports = React.createClass({
   componentDidMount: function () {
     this.refs.name.getDOMNode().focus();
   },
-  join: function (url) {
+  join: function (url, created) {
     const d = atom.project.getRootDirectory().getPath();
     setTimeout(function () {
-      require("../floobits").join_workspace_(d, url);
+      require("../floobits").join_workspace_(d, url, created);
     }, 0);
     this.destroy();
   },
@@ -111,7 +111,7 @@ module.exports = React.createClass({
 
       if (code < 400) {
         console.log("created workspace");
-        this.join(`http://${host}/${owner}/${name}`);
+        this.join(`http://${host}/${owner}/${name}`, true);
         return;
       }
       console.error('Unable to create workspace: ', code, body);
@@ -314,7 +314,7 @@ module.exports = React.createClass({
             }
             {!this.state.needsMonies ? "" :
               <div className="alert alert-danger" role="alert">
-                You reached the <a onClick={this.openBilling}>limit for private workspaces</a> for {this.state.host}/{this.state.owner}.
+                You reached the <a onClick={this.openBilling}>limit for workspaces</a> for {this.state.host}/{this.state.owner}.
               </div>
             }
             <div className="col-sm-offset-3 col-sm-9">

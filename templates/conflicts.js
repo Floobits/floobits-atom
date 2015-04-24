@@ -34,7 +34,10 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function () {
-    var local = this.refs.local;
+    const local = this.refs.local;
+    if (!local) {
+      return;
+    }
     $(local.getDOMNode()).focus();
   },
   onClick: function (id) {
@@ -103,43 +106,58 @@ module.exports = React.createClass({
     this.setState({enabled: false});
     require("../floobits").leave_workspace();
   },
-  render: function() {
-    var missing = this.render_("missing", this.props.missing);
-    var different = this.render_("different", this.props.different);
-    var newFiles = this.render_("newFiles", this.props.newFiles);
-    var ignored = _.map(this.props.ignored, function (p) {
+  render_created_workspace: function() {
+    const newFiles = this.render_("Uploading: ", this.props.newFiles);
+
+    return (<div>
+      <h1>You just created the workspace.</h1>
+      { newFiles }
+    </div>)
+  },
+  render_conflicts: function () {
+    const missing = this.render_("Missing", this.props.missing);
+    const different = this.render_("Different", this.props.different);
+    const newFiles = this.render_("New", this.props.newFiles);
+    const ignored = _.map(this.props.ignored, function (p) {
       return <li key={p}>{p}</li>;
     });
-    var tooBig = _.map(this.props.tooBig, function (size, p) {
+    const tooBig = _.map(this.props.tooBig, function (size, p) {
       return <li key={p}>{p}: {size}</li>;
     });
+
+    return (<div>
+      <h1>Your local files are different from the workspace.</h1>
+      <button disabled={!this.state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
+      <button ref="local" disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
+      <button disabled={!this.state.enabled} onClick={this.cancel_}>Cancel</button>
+
+      {missing}
+      {different}
+      {newFiles}
+      {!this.props.ignored.length ? "" : 
+        <div className="">
+          <h3>Ignored</h3>
+          <ol>
+            { ignored }
+          </ol>
+        </div>
+      }
+      {!tooBig.length ? "" : 
+        <div className="">
+          <h3>Too Big</h3>
+          <ol>
+            { tooBig }
+          </ol>
+        </div>
+      }
+    </div>)
+  },
+  render: function() {
+    const body = this.props.justUpload ? this.render_created_workspace() : this.render_conflicts();
     return (
       // overlay is an atom styling hack (used for modals)
       <div className="native-key-bindings overlay" style={{overflow: "auto", border: 0, padding: 10, left: 0, top: 0, margin: 0, width: "100%", height: "100%"}} >
-        <h1>Your local files are different from the workspace.</h1>
-        <button disabled={!this.state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
-        <button ref="local" disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
-        <button disabled={!this.state.enabled} onClick={this.cancel_}>Cancel</button>
-
-        {missing}
-        {different}
-        {newFiles}
-        {!this.props.ignored.length ? "" : 
-          <div className="">
-            <h3>Ignored</h3>
-            <ol>
-              { ignored }
-            </ol>
-          </div>
-        }
-        {!tooBig.length ? "" : 
-          <div className="">
-            <h3>Too Big</h3>
-            <ol>
-              { tooBig }
-            </ol>
-          </div>
-        }
+        {body}
       </div> 
     );
   }
