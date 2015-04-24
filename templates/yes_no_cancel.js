@@ -10,7 +10,7 @@ const atomUtils = require("../atom_utils");
 const YesNoCancel = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
   onSubmit: function (type, event) {
-    type = type || "yes";  // <-- from mixin
+    type = type ? type.target.name : "yes";  // <-- from mixin
     const cb = this.props.cb.bind({}, null, type);
     setTimeout(cb, 0);
     this.destroy();
