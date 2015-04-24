@@ -300,7 +300,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div className="floobits">
         <h2 style={{textAlign: "center"}}>Create Workspace</h2>
         <div className="well">
           <form id="join-workspace" className="form-horizontal native-key-bindings" onSubmit={this.onSubmit}>
@@ -313,15 +313,12 @@ module.exports = React.createClass({
             }
             {!this.state.needsMonies ? "" :
               <div className="alert alert-danger" role="alert">
-                You reached the limit for private workspaces for {this.state.host}/{this.state.owner}.
-                <br/>
-                <br/>
-                <button onClick={this.openBilling}>Open Billing in Browser</button>
+                You reached the <a onClick={this.openBilling}>limit for private workspaces</a> for {this.state.host}/{this.state.owner}.
               </div>
             }
             <div className="col-sm-offset-3 col-sm-9">
-              <input tabIndex="14" type="submit" value="Cancel" className="floobits-submit" onClick={this.destroy} />
-              <input tabIndex="15" type="submit" value={this.state.create ? "Create New Workspace" : "Join Existing Workspace"} className="floobits-submit" />
+              <input tabIndex="14" type="submit" value={this.state.create ? "Create Workspace" : "Join Workspace"} className="floobits-submit" />
+              <input tabIndex="15" type="submit" value="Cancel" className="floobits-submit" onClick={this.destroy} />
             </div>
           </form>
         </div>
