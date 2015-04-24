@@ -114,7 +114,8 @@ module.exports = React.createClass({
       return <li key={p}>{p}: {size}</li>;
     });
     return (
-      <div className="native-key-bindings" style={{overflow: "auto"}}>
+      // overlay is an atom styling hack (used for modals)
+      <div className="native-key-bindings overlay" style={{overflow: "auto", border: 0, padding: 10, left: 0, top: 0, margin: 0, width: "100%", height: "100%"}} >
         <h1>Your local files are different from the workspace.</h1>
         <button disabled={!this.state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
         <button ref="local" disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
