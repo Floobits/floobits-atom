@@ -63,7 +63,7 @@ module.exports = React.createClass({
           that.setState(that.state);
           console.error(err);
         } else {
-          _.each(res, function (org) {
+          _.each(body, function (org) {
             hosts[host].push(org.name);
           });
           that.setState(hosts);
@@ -104,7 +104,8 @@ module.exports = React.createClass({
     const name = this.refs.name.getDOMNode().value;
     const host = this.state.host;
     const owner = this.state.owner;
-    api.create_workspace(host, name, owner, {AnonymousUser: perms}, function (err, res, body) {
+    const room_perms = {AnonymousUser: perms};
+    api.create_workspace(host, name, owner, room_perms, function (err, res, body) {
       console.log(err, res, body);
       const code = res.statusCode;
 
