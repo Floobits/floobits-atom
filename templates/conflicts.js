@@ -110,7 +110,7 @@ module.exports = React.createClass({
     const newFiles = this.render_("Uploading: ", this.props.newFiles);
 
     return (<div>
-      <h1>You just created the workspace.</h1>
+      <h1>You just created {fl.floourl ? fl.floourl.toString() : "the workspace"}.</h1>
       { newFiles }
     </div>)
   },
