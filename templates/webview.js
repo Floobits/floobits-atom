@@ -21,7 +21,7 @@ Proto.createdCallback = function () {
 
 Proto.load = function (host) {
   this.host = host;
-  this.frame.src = "https://" + host + "/signup/atom";
+  this.frame.src = "https://" + host + "/signup/atom?next=/dash/settings/atom/complete";
   this.pane = new Pane("Floobits", "", this);
   atom.workspace.getActivePane().activateItem(this.pane);
 };
