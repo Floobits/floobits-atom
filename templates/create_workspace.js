@@ -75,7 +75,10 @@ module.exports = React.createClass({
     });
   },
   componentDidMount: function () {
-    this.refs.name.getDOMNode().focus();
+    const name = this.refs.name.getDOMNode();
+    const length = name.value.length;
+    name.setSelectionRange(length, length);
+    name.focus();
   },
   join: function (url, created) {
     const d = atom.project.getRootDirectory().getPath();
