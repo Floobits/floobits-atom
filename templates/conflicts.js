@@ -34,6 +34,13 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function () {
+    if (this.props.justUpload) {
+      const upload = this.remote_;
+      setTimeout(function () {
+        upload();
+      }, 0);
+    }
+
     const local = this.refs.local;
     if (!local) {
       return;
@@ -112,7 +119,7 @@ module.exports = React.createClass({
     return (<div>
       <h1>You just created {fl.floourl ? fl.floourl.toString() : "the workspace"}.</h1>
       { newFiles }
-    </div>)
+    </div>);
   },
   render_conflicts: function () {
     const missing = this.render_("Missing", this.props.missing);
