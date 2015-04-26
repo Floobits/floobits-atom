@@ -81,8 +81,8 @@ module.exports = React.createClass({
     name.focus();
   },
   join: function (url, created) {
-    const d = atom.project.getRootDirectory().getPath();
     setTimeout(function () {
+      const d = atom.project.getRootDirectory().getPath();
       require("../floobits").join_workspace_(d, url, created);
     }, 0);
     this.destroy();
@@ -113,8 +113,9 @@ module.exports = React.createClass({
       const code = res.statusCode;
 
       if (code < 400) {
-        console.log("created workspace");
-        this.join(`http://${host}/${owner}/${name}`, true);
+        const workspace = `http://${host}/${owner}/${name}`;
+        console.log("created workspace", workspace);
+        this.join(workspace, true);
         return;
       }
       console.error('Unable to create workspace: ', code, body);
