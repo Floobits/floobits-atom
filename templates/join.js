@@ -4,13 +4,14 @@
 
 const $ = require('atom-space-pen-views').$;
 const React = require('react-atom-fork');
+const utils = require("../utils");
 const mixins = require("./mixins");
 
 const JoinWorkspace = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
   getInitialState: function () {
     return {
-      path: "",
+      path: this.props.path,
       url: this.props.url,
     };
   },
@@ -26,14 +27,27 @@ const JoinWorkspace = React.createClass({
       return;
     }
     const path = files[0].path;
-    this.setState({path: path});
+    const state = {path: path};
+    if (this.refs.url.getDOMNode().value === this.props.url) {
+      const dotFloo = utils.load_floo(path);
+      if (dotFloo.url && dotFloo.url.length) {
+        state.url = dotFloo.url;
+      }
+    }
+    this.setState(state);
+  },
+  onDidStuff: function () {
+    if (this.state.path) {
+      return;
+    }
+    $("#ultra-secret-hidden-file-input").attr("webkitdirectory", true);
   },
   componentDidUpdate: function () {
-    $("#ultra-secret-hidden-file-input").attr("webkitdirectory", true);
+    this.onDidStuff();
   },
   componentDidMount: function () {
-    $("#ultra-secret-hidden-file-input").attr("webkitdirectory", true);
-    
+    this.onDidStuff();
+
     const that = this;
     setTimeout(function () {
       const url = that.refs.url.getDOMNode();
@@ -42,16 +56,6 @@ const JoinWorkspace = React.createClass({
       url.focus();
     }, 0);
 
-    const root = atom.project.rootDirectories;
-    if (!root.length) {
-      return;
-    }
-    const path = root[0].getPath();
-    if (!path) {
-      return;
-    }
-    this.setState({path: path});
-    $("#ultra-secret-hidden-file-input").attr("webkitdirectory", true);
   },
   onTyping: function (event) {
     const path = event.target.value;
@@ -61,7 +65,11 @@ const JoinWorkspace = React.createClass({
     this.setState({path: path});
   },
   focusFileInput: function (event) {
+    if (this.state.path) {
+      return;
+    }
     $("#ultra-secret-hidden-file-input").trigger('click');
+    this.setState({showMessage: true});
   },
   updateURL: function (e) {
     this.setState({url: e.target.value});
@@ -72,8 +80,8 @@ const JoinWorkspace = React.createClass({
         <h2>Join Workspace</h2>
         <div className="well">
           <form id="join-workspace" onSubmit={this.onSubmit} className="native-key-bindings">
-            <input id="ultra-secret-hidden-file-input" type="file" ref="dir" style={{display: "none"}} onChange={this.onChange_} webkitdirectory />
-            
+            <input id="ultra-secret-hidden-file-input" type="file" ref="dir" style={{display: "none"}} onChange={this.onChange_} />
+
             <div className="row">
               <div className="col-lg-12">
                 <div className="input-group">
@@ -86,13 +94,23 @@ const JoinWorkspace = React.createClass({
             <div className="row">
               <div className="col-lg-12">
                 <div className="input-group">
-                  <span onClick={this.clickFileInput} className="input-group-addon" id="directory-addon" >Select Directory</span>
-                  <input tabIndex="3" onFocus={this.focusFileInput} onChange={this.onTyping} type="text" className="native-key-bindings form-control" placeholder="..." 
+                  <span onClick={this.focusFileInput} style={{cursor: "pointer"}} className="input-group-addon" id="directory-addon" disabled={this.props.dir}>Select Directory</span>
+                  <input tabIndex="3" onFocus={this.focusFileInput} onChange={this.onTyping} disabled={this.props.path} type="text" className="native-key-bindings form-control" placeholder="..." 
                     aria-describedby="directory-addon" value={this.state.path} ref="dir" />
                 </div>
               </div>
             </div>
 
+            { this.props.path &&
+              <div className="row">
+                <div className="col-lg-12 pull-right">
+                  <p className="alert alert-info">
+                    Atom's API for managing windows is <a style={{color: "black"}}href="https://github.com/atom/atom/issues/5138">currently broken</a>.  If you'd like to open the workspace in a different window, 
+                    please open the window and then call floobits::join/create in that window.
+                  </p>
+                </div>
+              </div>
+            }
             <div className="row">
               <div className="col-lg-12 pull-right">
                 <input tabIndex="5" ref="submit" onClick={this.onSubmit} type="submit" value="Join" className="floobits-submit" />
