@@ -2,11 +2,12 @@
 
 Real-time collaborative editing. Think Etherpad, but with native editors. This is the plugin for Atom. We also have plugins for [Sublime Text](https://github.com/Floobits/floobits-sublime), [Emacs](https://github.com/Floobits/floobits-emacs), [Vim](https://github.com/Floobits/floobits-vim), and [IntelliJ](https://github.com/Floobits/floobits-intellij).
 
-### Development status: pre-alpha. Totally unstable and unusable. Don't install this yet.
+### Development status: alpha under heavy development
+Documentation is lacking, but you could probably get by using the sublime text docs.
 
 # Configuration
 
-All configuration settings are stored in `~/.floorc.json`. If you don’t have a `~/.floorc.json` file, the plugin will create one.
+A floobits account is required.  If you don't have one, the plugin will guide you through the process.
 
 # Help
 
