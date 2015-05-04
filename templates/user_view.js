@@ -9,7 +9,7 @@ var Connection, UserView, UserlistView, ChatUserlistView, IsMeUserView, NotMeUse
   flux = require('flukes'),
   modal = require("../modal"),
   $ = require('atom-space-pen-views').$,
-  // PermissionView = require("./permission_view"),
+  PermissionView = require("./permission_view"),
   perms = require("../common/permission_model"),
   editorAction = require("../common/editor_action"),
   webrtcAction = require("../common/webrtc_action"),
@@ -93,7 +93,8 @@ NotMeUserView = React.createClass({
     });
   },
   editPerms_: function () {
-    modal.showModal(PermissionView, {user: this.props.user, me: this.props.me, title: "Edit Permissions for " + this.props.user.id});
+    var view = PermissionView({user: this.props.user, me: this.props.me});
+    modal.showView(view);
   },
   followUser_: function () {
     editorAction.follow(this.props.user.id);
