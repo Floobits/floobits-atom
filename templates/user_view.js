@@ -48,38 +48,9 @@ Connection = React.createClass({
 });
 
 IsMeUserView = React.createClass({
-  getInitialState: function () {
-    return {
-      sharing: false
-    };
-  },
-  shareScreen: function (event) {
-    var err;
-    event.preventDefault();
-    event.stopPropagation();
-    if (this.state.sharing) {
-      webrtcAction.stop_screen(this.props.connection.id);
-      this.setState({sharing: false});
-      return;
-    }
-    err = webrtcAction.start_screen();
-    if (err instanceof Error) {
-      return;
-    }
-    this.setState({sharing: true});
-  },
   render: function () {
     return (
       <div>
-        <div style={{display: "inline-block"}}>
-          <a href="https://chrome.google.com/webstore/detail/floobits-screen-sharing/lmojaknpofhmdnbpanagbbeinbjmbodo"></a>
-          <a href="#" onClick={this.shareScreen}>
-            <i className="floobits-video-icon"></i> {this.state.sharing ? "Stop Screen Sharing" : "Share Screen" }
-          </a>
-        </div>
-        <div style={{display: "inline-block", paddingTop: 8}}>
-          <a href="/help/webrtc#screenshare" target="_blank" title="Screen Share Help"><i className="glyphicon glyphicon-question-sign"></i></a>
-        </div>
       </div>
     );
   }
