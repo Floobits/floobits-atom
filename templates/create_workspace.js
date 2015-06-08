@@ -98,8 +98,8 @@ module.exports = React.createClass({
     const view = this.refs.view.getDOMNode().checked;
     const perms = [];
     if (edit) {
-      perms.push("edit_room")
-      perms.push("view_room")
+      perms.push("edit_room");
+      perms.push("view_room");
     }
     if (view) {
       perms.push("view_room");
@@ -133,8 +133,8 @@ module.exports = React.createClass({
           return;
         case 409:
           this.setState({
-            error: "A workspace with that name already exists.", 
-            needsMonies: false, 
+            error: "A workspace with that name already exists.",
+            needsMonies: false,
             name: this.state.name+"1"}
           );
           return;
