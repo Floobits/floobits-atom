@@ -18,27 +18,28 @@ const mixins = require("./mixins");
 module.exports = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
   getInitialState: function () {
-    const d = atom.project.getRootDirectory();
     return {
       error: "",
-      name: d ? d.getBaseName() : "",
+      name: "",
       create: true,
       hosts: {},
       host: "",
       disabled_hosts: {},
-      owner: "", 
-       // perms
+      owner: "",
+      // perms
       view: true,
       edit: false,
       needsMonies: false
     };
   },
-  componentWillMount: function () {
-    if (!atom.project.getRootDirectory()) {
+  componentDidMount: function () {
+    const d = utils.getRootDirectory();
+    if (!d) {
       console.error("can't create a workspace without an open directory in atom");
       return this.destroy();
     }
     const state = this.state;
+    state.name = d.getBaseName();
     if (_.has(floorc.auth, constants.HOST)) {
       state.host = constants.HOST;
       state.owner = floorc.auth[constants.HOST].username;
@@ -71,18 +72,21 @@ module.exports = React.createClass({
         return cb();
       });
     }, function (err) {
-      if (err) console.error(err);
+      if (err) {
+        console.error(err);
+      }
+
+      const name = that.refs.name.getDOMNode();
+      const length = name.value.length;
+      name.setSelectionRange(length, length);
+      name.focus();
     });
-  },
-  componentDidMount: function () {
-    const name = this.refs.name.getDOMNode();
-    const length = name.value.length;
-    name.setSelectionRange(length, length);
-    name.focus();
   },
   join: function (url, created) {
     setTimeout(function () {
-      const d = atom.project.getRootDirectory().getPath();
+      // TODO: give the user the option of picking the directory if many are open
+      // also can explode
+      const d = utils.getRootDirectory().getPath();
       require("../floobits").join_workspace_(d, url, created);
     }, 0);
     this.destroy();

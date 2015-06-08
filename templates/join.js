@@ -95,7 +95,7 @@ const JoinWorkspace = React.createClass({
               <div className="col-lg-12">
                 <div className="input-group">
                   <span onClick={this.focusFileInput} style={{cursor: "pointer"}} className="input-group-addon" id="directory-addon" disabled={this.props.dir}>Select Directory</span>
-                  <input tabIndex="3" onFocus={this.focusFileInput} onChange={this.onTyping} disabled={this.props.path} type="text" className="native-key-bindings form-control" placeholder="..." 
+                  <input tabIndex="3" onFocus={this.focusFileInput} onChange={this.onTyping} disabled={this.props.path} type="text" className="native-key-bindings form-control" placeholder="..."
                     aria-describedby="directory-addon" value={this.state.path} ref="dir" />
                 </div>
               </div>
@@ -105,7 +105,7 @@ const JoinWorkspace = React.createClass({
               <div className="row">
                 <div className="col-lg-12 pull-right">
                   <p className="alert alert-info">
-                    Atom's API for managing windows is <a style={{color: "black"}}href="https://github.com/atom/atom/issues/5138">currently broken</a>.  If you'd like to open the workspace in a different window, 
+                    Atom's API for managing windows is <a style={{color: "black"}}href="https://github.com/atom/atom/issues/5138">currently broken</a>.  If you'd like to open the workspace in a different window,
                     please open the window and then call floobits::join/create in that window.
                   </p>
                 </div>
@@ -124,4 +124,4 @@ const JoinWorkspace = React.createClass({
   }
 });
 
-module.exports = JoinWorkspace
+module.exports = JoinWorkspace;

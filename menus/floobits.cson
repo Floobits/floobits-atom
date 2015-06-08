@@ -1,8 +1,9 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
-  '.overlayer':
-      'Enable Floobits': 'floobits: join workspace'
-      'Enable Floobits': 'floobits: join recent workspace'
+  'atom-workspace': [
+    { 'label': 'Enable Floobits', 'command': 'floobits: join workspace' }
+    { 'label': 'Enable Floobits', 'command': 'floobits: join recent workspace' }
+  ]
 
 'menu': [
   {
