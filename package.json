@@ -1,7 +1,7 @@
 {
   "name": "floobits",
   "main": "./lib/floobits",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Floobits plugin for Atom editor",
   "maintainers": [
     {
