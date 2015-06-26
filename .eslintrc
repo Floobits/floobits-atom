@@ -3,6 +3,7 @@
     "arrowFunctions": true,
     "blockBindings": true,
     "generators": true,
+    "objectLiteralShorthandProperties": true,
     "templateStrings": true
   },
   "env": {
@@ -15,21 +16,24 @@
     "window": false
   },
   "rules": {
-    "camelcase": [0, false],
-    "comma-dangle": [0, false],
+    "camelcase": [0],
+    "comma-dangle": [0],
     "consistent-this": [1, "that"],
-    "default-case": [2, true],
-    "guard-for-in": [2, true],
+    "default-case": [2],
+    "guard-for-in": [2],
     "indent": [2, 2],
     "max-nested-callbacks": [1, 3],
-    "no-nested-ternary": [2, true],
-    "no-self-compare": [2, true],
-    "no-sync": [1, true],
-    "no-underscore-dangle": [0, false],
-    "no-throw-literal": [2, true],
-    "no-void": [2, true],
-    "radix": [2, true],
+    "no-nested-ternary": [2],
+    "no-self-compare": [2],
+    "no-sync": [1],
+    "no-underscore-dangle": [0],
+    "no-throw-literal": [2],
+    "no-void": [2],
+    "radix": [2],
     "strict": [2, "global"],
-    "vars-on-top": [2, true]
+    "vars-on-top": [2]
+  },
+  "settings": {
+    "ecmascript": 6
   }
 }
