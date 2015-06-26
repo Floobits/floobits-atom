@@ -2,7 +2,7 @@
   "name": "floobits",
   "main": "./lib/floobits",
   "version": "0.6.0",
-  "description": "Floobits plugin for Atom editor",
+  "description": "Floobits collaboration plugin for Atom editor",
   "maintainers": [
     {
       "name": "Geoff Greer",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "async": "1.x",
+    "atom-space-pen-views": "2.0.x",
     "diff_match_patch": "0.1.x",
     "flukes": "0.1.x",
     "fs-extra": "0.x",
@@ -42,11 +43,10 @@
     "minimatch": "2.x",
     "mkdirp": "0.5.x",
     "open": "0.x",
-    "request": "2.x",
     "react-atom-fork": "0.11.x",
     "react-tools": "0.11.x",
     "reactionary-atom-fork": "1.x",
-    "atom-space-pen-views": "2.0.x"
+    "request": "2.x"
   },
   "devDependencies": {
     "eslint": "0.x"
