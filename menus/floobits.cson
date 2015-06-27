@@ -1,8 +1,8 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
   'atom-workspace': [
-    { 'label': 'Enable Floobits', 'command': 'floobits: join workspace' }
-    { 'label': 'Enable Floobits', 'command': 'floobits: join recent workspace' }
+    { 'label': 'Enable Floobits', 'command': 'Floobits: Join Workspace' }
+    { 'label': 'Enable Floobits', 'command': 'Floobits: Join Recent Workspace' }
   ]
 
 'menu': [
@@ -11,10 +11,10 @@
     'submenu': [
       'label': 'Floobits'
       'submenu': [
-        { 'label': 'join workspace', 'command': 'floobits: join workspace' }
-        { 'label': 'join recent workspace', 'command': 'floobits: join recent workspace' }
-        { 'label': 'leave workspace', 'command': 'floobits: leave workspace' }
-        { 'label': 'create workspace', 'command': 'floobits: create workspace' }
+        { 'label': 'Join Workspace', 'command': 'Floobits: Join Workspace' }
+        { 'label': 'Join Recent Workspace', 'command': 'Floobits: Join Recent Workspace' }
+        { 'label': 'Leave Workspace', 'command': 'Floobits: Leave Workspace' }
+        { 'label': 'Create Workspace', 'command': 'Floobits: Greate Workspace' }
       ]
     ]
   }
