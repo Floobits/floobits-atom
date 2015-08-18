@@ -32,7 +32,7 @@ module.exports = React.createClass({
       needsMonies: false
     };
   },
-  componentDidMount: function () {
+  componentWillMount: function () {
     const d = utils.getRootDirectory();
     if (!d) {
       console.error("can't create a workspace without an open directory in atom");
