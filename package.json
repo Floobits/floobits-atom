@@ -28,13 +28,13 @@
     }
   ],
   "repository": "https://github.com/Floobits/floobits-atom",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "engines": {
     "atom": ">0.192.0"
   },
   "dependencies": {
     "async": "1.x",
-    "atom-space-pen-views": "2.0.x",
+    "atom-space-pen-viewss": "2.1.x",
     "diff_match_patch": "0.1.x",
     "flukes": "0.1.x",
     "fs-extra": "0.x",
