@@ -9,7 +9,6 @@ const path = require("path");
 const React = require('react-atom-fork');
 const open_url = require("open");
 const $ = require('atom-space-pen-views').$;
-const utils = require("../utils");
 const floorc = require("../common/floorc");
 const api = require("../common/api");
 const constants = require("../common/constants");
@@ -32,14 +31,13 @@ module.exports = React.createClass({
       needsMonies: false
     };
   },
-  componentDidMount: function () {
-    const d = utils.getRootDirectory();
-    if (!d) {
+  componentWillMount: function () {
+    if (!this.props.dir) {
       console.error("can't create a workspace without an open directory in atom");
       return this.destroy();
     }
     const state = this.state;
-    state.name = d.getBaseName();
+    state.name = this.props.dir.getBaseName();
     if (_.has(floorc.auth, constants.HOST)) {
       state.host = constants.HOST;
       state.owner = floorc.auth[constants.HOST].username;
@@ -83,12 +81,10 @@ module.exports = React.createClass({
     });
   },
   join: function (url, created) {
-    setTimeout(function () {
-      // TODO: give the user the option of picking the directory if many are open
-      // also can explode
-      const d = utils.getRootDirectory().getPath();
-      require("../floobits").join_workspace_(d, url, created);
-    }, 0);
+    const path = this.props.dir.getPath();
+    process.nextTick(function () {
+      require("../floobits").join_workspace_(path, url, created);
+    });
     this.destroy();
   },
   onSubmit: function (event) {

@@ -7,7 +7,8 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-'atom-text-editor':
-  'ctrl-alt-o': 'floobits: join recent workspace'
-  'ctrl-shift-j': 'floobits: join workspace'
-  'ctrl-shift-a': 'floobits: follow'
+
+'atom-workspace':
+  # 'ctrl-alt-o': 'Floobits: Join Recent Workspace'
+  'ctrl-shift-j': 'Floobits: Join Workspace'
+  'ctrl-shift-a': 'Floobits: Follow Changes'

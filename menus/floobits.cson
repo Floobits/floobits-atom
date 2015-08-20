@@ -2,7 +2,7 @@
 'context-menu':
   'atom-workspace': [
     { 'label': 'Enable Floobits', 'command': 'Floobits: Join Workspace' }
-    { 'label': 'Enable Floobits', 'command': 'Floobits: Join Recent Workspace' }
+    # { 'label': 'Enable Floobits', 'command': 'Floobits: Join Recent Workspace' }
   ]
 
 'menu': [
@@ -12,9 +12,9 @@
       'label': 'Floobits'
       'submenu': [
         { 'label': 'Join Workspace', 'command': 'Floobits: Join Workspace' }
-        { 'label': 'Join Recent Workspace', 'command': 'Floobits: Join Recent Workspace' }
+        # { 'label': 'Join Recent Workspace', 'command': 'Floobits: Join Recent Workspace' }
         { 'label': 'Leave Workspace', 'command': 'Floobits: Leave Workspace' }
-        { 'label': 'Create Workspace', 'command': 'Floobits: Greate Workspace' }
+        { 'label': 'Create Workspace', 'command': 'Floobits: Create Workspace' }
       ]
     ]
   }

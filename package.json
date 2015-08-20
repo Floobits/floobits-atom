@@ -2,7 +2,7 @@
   "name": "floobits",
   "main": "./lib/floobits",
   "version": "0.6.0",
-  "description": "Floobits collaboration plugin for Atom editor",
+  "description": "Floobits collaboration plugin for Atom editor. Remote pair programming done right.",
   "maintainers": [
     {
       "name": "Geoff Greer",
@@ -28,16 +28,15 @@
     }
   ],
   "repository": "https://github.com/Floobits/floobits-atom",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "engines": {
-    "atom": ">0.192.0"
+    "atom": ">1.0"
   },
   "dependencies": {
     "async": "1.x",
-    "atom-space-pen-views": "2.0.x",
-    "diff_match_patch": "0.1.x",
+    "atom-space-pen-views": "2.1.x",
+    "dmp": "0.x",
     "flukes": "0.1.x",
-    "fs-extra": "0.x",
     "fs-plus": "2.x",
     "lodash": "3.x",
     "minimatch": "2.x",
@@ -49,7 +48,7 @@
     "request": "2.x"
   },
   "devDependencies": {
-    "eslint": "0.x"
+    "eslint": "1.x"
   },
   "scripts": {
     "build": "npm run install",
