@@ -74,10 +74,10 @@
       height: @userThumbHeight;
       width: @userThumbWidth;
       &.user-my-conn {
-        //.transform(~"scale(-1, 1)");
+        transform: scaleX(-1);
       }
       &.audio-only {
-        //.transform(~"scale(1, 1)");
+        transform: scaleX(1);
       }
     }
     &.opened {
