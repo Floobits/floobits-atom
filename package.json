@@ -30,7 +30,7 @@
   "repository": "https://github.com/Floobits/floobits-atom",
   "license": "Apache-2.0",
   "engines": {
-    "atom": ">1.0"
+    "atom": ">=1.0"
   },
   "dependencies": {
     "async": "1.x",
