@@ -3,7 +3,7 @@
 "use babel";
 "use strict";
 
-const React = require('react-atom-fork');
+const React = require("react-atom-fork");
 const _ = require("lodash");
 const mixins = require("./mixins");
 const UserlistView = require("./user_view").UserlistView;
