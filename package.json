@@ -45,7 +45,8 @@
     "react-atom-fork": "0.11.x",
     "react-tools": "0.11.x",
     "reactionary-atom-fork": "1.x",
-    "request": "2.x"
+    "request": "2.x",
+    "chokidar": "1.0.x"
   },
   "devDependencies": {
     "eslint": "1.x"
