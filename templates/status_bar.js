@@ -4,7 +4,7 @@
 const React = require('react-atom-fork');
 
 module.exports = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <div className="floobits-status-bar">
         Connected to {this.props.owner}/{this.props.workspace} as {this.props.username}.

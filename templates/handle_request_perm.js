@@ -10,19 +10,19 @@ module.exports = React.createClass({
   destroy: function () {
     this.getDOMNode().parentNode.destroy();
   },
-  grant: function() {
+  grant: function () {
     permsEvent.action = "add";
     this.send();
   },
-  deny: function() {
+  deny: function () {
     permsEvent.action = "reject";
     this.send();
   },
-  send: function() {
+  send: function () {
     floop.send_perms(permsEvent);
     this.destroy();
   },
-  render: function() {
+  render: function () {
     permsEvent['user_id'] = this.props.userId;
     permsEvent['perms'] = this.props.perms;
     return (
