@@ -56,7 +56,7 @@ module.exports = React.createClass({
         <h3>{name}</h3>
         <ol>
           {
-            _.map(items, function(b, id) {
+            _.map(items, function (b, id) {
               var path = b.path;
               return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path}</li>);
             }, this)
@@ -113,7 +113,7 @@ module.exports = React.createClass({
     this.setState({enabled: false});
     require("../floobits").leave_workspace();
   },
-  render_created_workspace: function() {
+  render_created_workspace: function () {
     const newFiles = this.render_("Uploading: ", this.props.newFiles);
 
     return (<div>
@@ -159,7 +159,7 @@ module.exports = React.createClass({
       }
     </div>)
   },
-  render: function() {
+  render: function () {
     const body = this.props.justUpload ? this.render_created_workspace() : this.render_conflicts();
     return (
       // overlay is an atom styling hack (used for modals)
