@@ -11,10 +11,11 @@ const UserlistView = require("./user_view").UserlistView;
 module.exports = React.createClass({
   mixins: [mixins.ReactUnwrapper],
   render: function () {
+    let path = atom.packages.getActivePackage('floobits').path;
     return (
       <div id="user-list-pane">
         <div id="user-list-pane-header">
-          <img src="atom://floobits/resources/icon_64x64.png" />Floobits Users
+          <img src={"file://" + path + "/resources/icon_64x64.png"} />Floobits Users
           <i className="floobits-close-icon-small" onClick={this.destroy}></i>
         </div>
         <UserlistView users={this.props.users} me={this.props.me} prefs={this.props.prefs} />
