@@ -1,7 +1,7 @@
 {
   "name": "floobits",
   "main": "./lib/floobits",
-  "version": "0.9.0",
+  "version": "0.10.4",
   "description": "Floobits collaboration plugin for Atom editor. Remote pair programming done right.",
   "maintainers": [
     {
