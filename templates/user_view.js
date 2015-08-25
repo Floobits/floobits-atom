@@ -197,8 +197,7 @@ GravatarThumbnailView = React.createClass({
 ImageThumbnailView = React.createClass({
   mixins: [UserView],
   render_image: function () {
-    var context = this.refs.canvas.getDOMNode().getContext("2d");
-    context.putImageData(this.props.connection.image, 0, 0);
+    this.refs.mugshot.getDOMNode().setAttribute("src", this.props.connection.image.data);
   },
   componentDidMount: function () {
     this.render_image();
@@ -210,10 +209,33 @@ ImageThumbnailView = React.createClass({
     webrtcAction.start_video_chat(this.props.connection.id);
   },
   body: function () {
-    var canEdit = perms.indexOf("patch") !== -1,
-      className = "user-thumb" + (this.props.connection.isMe ? " user-my-conn": "");
+    var conn = this.props.connection,
+      canEdit = perms.indexOf("patch") !== -1,
+      clickToVideo = "",
+      everyone = "";
+
+    if (canEdit) {
+      if (conn.isMe) {
+        everyone = (<div>with everyone</div>);
+      }
+      clickToVideo = (
+        <div className="click-to-video">
+          <i className="glyphicon glyphicon-facetime-video"></i>&nbsp;
+          Start video chat {everyone}
+        </div>
+      );
+    }
+
     return (
-      <canvas ref="canvas" className={className} width="228px" height="228px" title={canEdit ? "Start video chat" : null} onClick={this.onClick}></canvas>
+      <div className="user-face" onClick={this.onClick}>
+        <img
+          ref="mugshot"
+          className={"user-thumb" + (conn.isMe ? " user-my-conn" : "")}
+          style={{width: conn.image.width, height: conn.image.height}}
+          title={canEdit ? "Start video chat" : null}
+          src={conn.image.data} />
+        {clickToVideo}
+      </div>
     );
   }
 });
