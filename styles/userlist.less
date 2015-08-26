@@ -53,19 +53,19 @@
       top: 3px;
       right: 3px;
       z-index: @zPlane1;
-      //.glyphicon-remove;
+      .floobits-icon-remove;
     }
     i.in-video {
       top: auto;
       bottom: @userBarHeight + 3;
       left: 3px;
-      //.glyphicon-facetime-video;
+      .floobits-video-icon;
     }
     i.user-following {
       top: auto;
       bottom: @userBarHeight + 3;
       right: 3px;
-      //.glyphicon-magnet;
+      .floobits-follow-icon;
     }
     .user-thumb {
       cursor: pointer;
@@ -117,6 +117,9 @@
         padding: 3px 5px;
         .stack-up-content {
           padding: 0 3px;
+          a {
+            color: #73B893;
+          }
         }
       }
       .user-conn {
