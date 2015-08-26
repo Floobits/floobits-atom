@@ -76,7 +76,7 @@ NotMeUserView = React.createClass({
       <div>
         <span className="user-client-name">{this.props.user.id}</span>
         <span className="pull-right">
-          <a target="_blank" href={"/" + this.props.user.id + "/"}><i className="glyphicon glyphicon-info-sign"></i> Info</a>
+          <a target="_blank" href={"/" + this.props.user.id + "/"}><i className="floobits-info-icon"></i> Info</a>
         </span>
         {isAdmin &&
           <div onClick={this.kick_} className="pull-right" style={{clear: "both"}}>
@@ -85,12 +85,12 @@ NotMeUserView = React.createClass({
         }
         {!this.props.isListView &&
         <div onClick={this.followUser_} className="pull-right" style={{clear: "both"}}>
-          <a href="#"><i className="glyphicon glyphicon-magnet"></i> {this.props.isFollowing ? "Unfollow" : "Follow"}</a>
+          <a href="#"><i className="floobits-follow-icon"></i> {this.props.isFollowing ? "Unfollow" : "Follow"}</a>
         </div>
         }
         {isAdmin &&
           <div onClick={this.editPerms_} className="pull-right" style={{clear: "both"}}>
-            <a href="#"><i className="glyphicon glyphicon-cog"></i> Permissions</a>
+            <a href="#"><i className="floobits-permissions-icon"></i> Permissions</a>
           </div>
         }
       </div>

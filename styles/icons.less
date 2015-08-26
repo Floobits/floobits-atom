@@ -1,55 +1,57 @@
 @import "octicon-mixins";
 
-.floobits-close-icon {
-  .octicon(x, 24px);
-  position: absolute;
-  top: 0px;
-  right: 0px;
+.make_icon(@octiconicon, @size: 16px) {
+  .octicon(@octiconicon, @size);
   margin: 0 auto;
   text-align: center;
   z-index: 100000;
+  cursor: default;
+}
+
+.floobits-close-icon {
+  .make_icon(x, 24px);
+  position: absolute;
+  top: 0px;
+  right: 0px;
   cursor: pointer;
 }
 
 .floobits-close-icon-small {
-  .octicon(x, 16px);
+  .make_icon(x, 16px);
   position: absolute;
   top: 4px;
   right: 2px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
   cursor: pointer;
 }
 
+.floobits-icon-remove {
+  .make_icon(x);
+}
+
 .floobits-arrow-up-icon {
-  .octicon(chevron-up, 20px);
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
+  .make_icon(three-bars);
 }
 
 .floobits-arrow-down-icon {
-  .octicon(chevron-down, 20px);
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
+  .make_icon(three-bars);
 }
 
 .floobits-eject-icon {
-  .octicon(jump-down, 16px);
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
+  .make_icon(jump-down);
 }
 
 .floobits-video-icon {
-  .octicon(device-camera-video, 16px);
-  margin: 0 auto;
-  text-align: center;
-  z-index: 100000;
-  cursor: default;
+  .make_icon(device-camera-video);
+}
+
+.floobits-follow-icon {
+  .make_icon(radio-tower);
+}
+
+.floobits-info-icon {
+  .make_icon(info);
+}
+
+.floobits-permissions-icon {
+  .make_icon(gear);
 }
