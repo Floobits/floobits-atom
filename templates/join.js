@@ -15,7 +15,10 @@ const JoinWorkspace = React.createClass({
       url: this.props.url,
     };
   },
-  onSubmit: function () {
+  onSubmit: function (event) {
+    if (event) {
+      event.preventDefault();
+    }
     setTimeout(function () {
       this.props.on_url(this.state.path, this.refs.url.getDOMNode().value);
     }.bind(this), 0);
