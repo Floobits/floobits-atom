@@ -76,7 +76,7 @@ module.exports = React.createClass({
         encoding: b,
       });
     });
-    // ST3 behavior 
+    // ST3 behavior
     // self.send({'name': 'saved', 'id': existing_buf['id']})
 
     _.each(this.props.missing, function (b, id) {
@@ -99,15 +99,15 @@ module.exports = React.createClass({
         });
       });
     });
-    this.props.onHandledConflicts();
+    this.props.onHandledConflicts({});
   },
   local_: function () {
-    const fetch = _.merge(this.props.missing, this.props.different);
     this.setState({enabled: false});
-    _.each(fetch, function (b, id) {
+    const toSave = _.merge(this.props.missing, this.props.different);
+    _.each(toSave, function (b, id) {
       floop.send_get_buf(id);
     });
-    this.props.onHandledConflicts();
+    this.props.onHandledConflicts(toSave);
   },
   cancel_: function () {
     this.setState({enabled: false});
@@ -141,7 +141,7 @@ module.exports = React.createClass({
       {missing}
       {different}
       {newFiles}
-      {!this.props.ignored.length ? "" : 
+      {!this.props.ignored.length ? "" :
         <div className="">
           <h3>Ignored</h3>
           <ol>
@@ -149,7 +149,7 @@ module.exports = React.createClass({
           </ol>
         </div>
       }
-      {!tooBig.length ? "" : 
+      {!tooBig.length ? "" :
         <div className="">
           <h3>Too Big</h3>
           <ol>
@@ -165,7 +165,7 @@ module.exports = React.createClass({
       // overlay is an atom styling hack (used for modals)
       <div className="native-key-bindings overlay" style={{overflow: "auto", border: 0, padding: 10, left: 0, top: 0, margin: 0, width: "100%", height: "100%"}} >
         {body}
-      </div> 
+      </div>
     );
   }
 });
