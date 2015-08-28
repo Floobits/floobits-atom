@@ -16,6 +16,7 @@ Proto.createdCallback = function () {
   frame.style.border = "0 none";
   frame.style.width = "100%";
   frame.style.height = "100%";
+  frame.className = "native-key-bindings";
   this.frame = frame;
 };
 
