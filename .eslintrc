@@ -5,5 +5,8 @@
     "document": false,
     "MediaStreamTrack": false,
     "window": false
+  },
+  rules: {
+    "consistent-this": [1, "that"]
   }
 }
