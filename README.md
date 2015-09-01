@@ -16,6 +16,8 @@ In addition to syncing text, this plugin also allows collaborators to video chat
 
 For a demo of this plugin in action, see [this video](https://www.youtube.com/watch?v=liwChJKd4og) of [ggreer](https://github.com/ggreer) and [btipling](https://github.com/btipling) pairing on [ag](https://github.com/ggreer/the_silver_searcher).
 
+<img alt="Pairing on ag in Atom" src="https://floobits.com/static/images/atom_pair.gif" width="640" height="360" style="width: 640px; height: 360px;" />
+
 Documentation is lacking, but you could probably get by using the Sublime Text docs.
 
 ## Configuration
