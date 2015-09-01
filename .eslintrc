@@ -6,7 +6,13 @@
     "MediaStreamTrack": false,
     "window": false
   },
-  rules: {
+  "plugins": [
+    "react"
+  ],
+  "rules": {
     "consistent-this": [1, "that"]
+  },
+  "settings": {
+    "jsx": true
   }
 }

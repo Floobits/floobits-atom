@@ -49,7 +49,8 @@
   },
   "devDependencies": {
     "eslint": "1.x",
-    "eslint-config-floobits": "*"
+    "eslint-config-floobits": "*",
+    "eslint-plugin-react": "3.x"
   },
   "scripts": {
     "build": "npm run install",
