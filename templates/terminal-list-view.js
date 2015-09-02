@@ -13,8 +13,8 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div className="header">
-        <span className="icon icon-squirrel">terminals</span>
-        <ul onMouseDown={this.onMouseDown} style={{listStyleType: "none"}}>
+        <span className=""><img src="atom://floobits/resources/icon_64x64.png" />terminals</span>
+        <ul onMouseDown={this.onMouseDown}>
           {this.props.terminals.map(function (t) {
             return <li onMouseDown={this.onMouseDown.bind(this, t.id)} >tty-{t.username}</li>;
           }.bind(this))}
