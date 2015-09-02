@@ -32,7 +32,5 @@ class Pane
   setView: (@view) ->
   getTitle: () =>
     @title
-  detached: ->
-    console.log "detached1"
 
 module.exports = Pane
