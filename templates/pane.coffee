@@ -17,15 +17,22 @@ class PaneView extends View
       $tabView.append @$tabFavicon
       $tabView.find('.title').css paddingLeft: '2.7em'
 
+  detached: ->
+    console.log "detached"
+    @pane.onDetached?()
+
+
   @content: (params) ->
     @div 'style': "overflow: auto;"
 
 class Pane
-  constructor: (@title, @icon, @inner) ->
+  constructor: (@title, @icon, @inner, @onDetached) ->
   getViewClass: -> PaneView
   getView: -> @view
   setView: (@view) ->
   getTitle: () =>
     @title
+  detached: ->
+    console.log "detached1"
 
 module.exports = Pane
