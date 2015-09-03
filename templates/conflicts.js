@@ -73,7 +73,7 @@ module.exports = React.createClass({
         id: id,
         buf: b.txt.toString(encoding),
         md5: b.md5,
-        encoding: b,
+        encoding: encoding,
       });
     });
     // ST3 behavior
