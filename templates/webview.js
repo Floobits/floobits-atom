@@ -16,6 +16,7 @@ Proto.createdCallback = function () {
   frame.style.border = "0 none";
   frame.style.width = "100%";
   frame.style.height = "100%";
+  frame.sandbox= "allow-same-origin allow-scripts allow-popups allow-forms";
   frame.className = "native-key-bindings";
   this.frame = frame;
 };
@@ -57,7 +58,6 @@ Proto.attachedCallback = function () {
   this.appendChild(this.frame);
   const that = this;
   window.addEventListener("message", function (e) {
-    console.log("message2", e.origin, e.data);
     const data = JSON.parse(e.data);
     if (!data.auth) {
       return;
