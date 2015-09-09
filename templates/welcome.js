@@ -80,7 +80,7 @@ const LoginForm = React.createClass({
       try {
         floorc.__write();
       } catch (e) {
-        return message_action.error(err);
+        return message_action.error(e);
       }
       that.setState({
         error: null,
@@ -95,7 +95,7 @@ const LoginForm = React.createClass({
   render: function () {
     return <form className="signup-form" onSubmit={this.onSubmit_}>
       <span className="signup-title">Login</span>
-      { this.state.error &&  
+      { this.state.error &&
         <div className="signup-input-container" style={{color: "#d00303", padding: 20}}>
           {this.state.error}
         </div>
@@ -115,7 +115,7 @@ const LoginForm = React.createClass({
       <div>
         https://floobits.com/login/github
       </div>
-      { this.state.reset && 
+      { this.state.reset &&
         <div className="signup-input-container">
           <a href="" onClick={this.password_reset}>Reset Password in Browser</a>
         </div>

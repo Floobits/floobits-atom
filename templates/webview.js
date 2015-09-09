@@ -10,22 +10,65 @@ const Pane = require("../../templates/pane");
 const Proto = Object.create(HTMLElement.prototype);
 
 Proto.createdCallback = function () {
-  const frame = document.createElement("iframe");
-  frame.allowtransparency = "on";
-  frame.id = "asdfifiafjfj";
+  const frame = document.createElement("webview");
+  frame.setAttribute("plugins", "on");
+  frame.setAttribute("disablewebsecurity", "on");
+  frame.setAttribute("allowPointerLock", 'on');
+  frame.setAttribute("allowfileaccessfromfiles", 'on');
   frame.style.border = "0 none";
   frame.style.width = "100%";
   frame.style.height = "100%";
-  frame.sandbox= "allow-same-origin allow-scripts allow-popups allow-forms";
   frame.className = "native-key-bindings";
+
+  frame.addEventListener("console-message",function (e) {
+    let m = e.message;
+    const prefix = "::atom-floobits-ipc::";
+    if (!m.startsWith(prefix)) {
+      return true;
+    }
+    m = m.slice(prefix.length);
+    console.log(m);
+    try {
+      m = JSON.parse(m);
+    } catch (e) {
+      return true;
+    }
+    this.onCredentials(m.auth);
+    return true;
+  }.bind(this));
   this.frame = frame;
+};
+
+Proto.onCredentials = function (blob) {
+  if (!_.has(floorc, "auth")) {
+    floorc.auth = {};
+  }
+
+  const host = _.keys(blob)[0];
+  const auth_data = blob[host];
+
+  if (!_.has(floorc.auth, host)) {
+    floorc.auth[host] = {};
+  }
+
+  const floorc_auth = floorc.auth[host];
+
+  floorc_auth.username = auth_data.username;
+  floorc_auth.api_key = auth_data.api_key;
+  floorc_auth.secret = auth_data.secret;
+
+  try {
+    floorc.__write();
+  } catch (e) {
+    return message_action.error(e);
+  }
 };
 
 Proto.load = function (host) {
   this.host = host;
-  this.frame.src = "https://" + host + "/signup/atom?next=/dash/settings/atom/complete";
   this.pane = new Pane("Floobits", "", this);
   atom.workspace.getActivePane().activateItem(this.pane);
+  this.frame.src = `https://${host}/signup/atom?atomthing=true`;
 };
 
 Proto.handle_login = function (auth) {
@@ -62,7 +105,7 @@ Proto.attachedCallback = function () {
     if (!data.auth) {
       return;
     }
-    return that.handle_login(data.auth);
+    that.handle_login(data.auth);
   });
 };
 
