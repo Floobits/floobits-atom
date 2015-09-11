@@ -23,7 +23,7 @@ class PaneView extends View
 
 
   @content: (params) ->
-    @div 'style': "overflow: auto;"
+    @div 'style': "overflow: auto;", "class": "native-key-bindings"
 
 class Pane
   constructor: (@title, @icon, @inner, @onDetached) ->
