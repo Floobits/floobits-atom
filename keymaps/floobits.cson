@@ -12,3 +12,9 @@
   # 'ctrl-alt-o': 'Floobits: Join Recent Workspace'
   'ctrl-shift-j': 'Floobits: Join Workspace'
   'ctrl-shift-a': 'Floobits: Follow Changes'
+
+
+'.floobits-nativize webview':
+  'tab':        'native!'
+  'shift-tab':  'native!'
+  'click':      'native!'
