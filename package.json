@@ -45,7 +45,11 @@
     "react-atom-fork": "0.11.x",
     "react-tools": "0.11.x",
     "reactionary-atom-fork": "1.x",
-    "request": "2.x"
+    "request": "2.x",
+    "atom-term.js": "0.0.56"
+  },
+  "consumedServices": {
+    "term2": ""
   },
   "devDependencies": {
     "eslint": "1.x",
