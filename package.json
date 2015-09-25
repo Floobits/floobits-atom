@@ -50,7 +50,7 @@
     "term3": ""
   },
   "consumedServices": {
-    "term2": ""
+    "term3": ""
   },
   "devDependencies": {
     "eslint": "1.x",
