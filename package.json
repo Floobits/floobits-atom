@@ -46,7 +46,8 @@
     "react-tools": "0.11.x",
     "reactionary-atom-fork": "1.x",
     "request": "2.x",
-    "atom-term.js": "0.0.56"
+    "event-kit": "1.3.x",
+    "term3": ""
   },
   "consumedServices": {
     "term2": ""
