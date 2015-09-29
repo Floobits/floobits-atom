@@ -49,7 +49,11 @@
     "event-kit": "1.3.x"
   },
   "consumedServices": {
-    "term3": ""
+    "term3-service": {
+      "versions": {
+        "0.1.0": "term3-service"
+      }
+    }
   },
   "devDependencies": {
     "eslint": "1.x",
