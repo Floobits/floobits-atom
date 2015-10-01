@@ -74,10 +74,10 @@ module.exports = React.createClass({
         buf: b.txt.toString(encoding),
         md5: b.md5,
         encoding: encoding,
+      }, null, function () {
+        floop.send_saved({id: id});
       });
     });
-    // ST3 behavior
-    // self.send({'name': 'saved', 'id': existing_buf['id']})
 
     _.each(this.props.missing, function (b, id) {
       floop.send_delete_buf({id: id});
@@ -89,8 +89,8 @@ module.exports = React.createClass({
           console.log(err);
           return;
         }
-        var encoding = utils.is_binary(data, data.length) ? "base64" : "utf8";
 
+        const encoding = utils.is_binary(data, data.length) ? "base64" : "utf8";
         floop.send_create_buf({
           path: rel,
           buf: data.toString(encoding),
