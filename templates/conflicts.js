@@ -74,10 +74,10 @@ module.exports = React.createClass({
         buf: b.txt.toString(encoding),
         md5: b.md5,
         encoding: encoding,
+      }, null, function () {
+        floop.send_saved({id: id});
       });
     });
-    // ST3 behavior
-    // self.send({'name': 'saved', 'id': existing_buf['id']})
 
     _.each(this.props.missing, function (b, id) {
       floop.send_delete_buf({id: id});
@@ -89,8 +89,8 @@ module.exports = React.createClass({
           console.log(err);
           return;
         }
-        var encoding = utils.is_binary(data, data.length) ? "base64" : "utf8";
 
+        const encoding = utils.is_binary(data, data.length) ? "base64" : "utf8";
         floop.send_create_buf({
           path: rel,
           buf: data.toString(encoding),
@@ -103,7 +103,7 @@ module.exports = React.createClass({
   },
   local_: function () {
     this.setState({enabled: false});
-    const toSave = _.merge(this.props.missing, this.props.different);
+    const toSave = _.merge({}, this.props.missing, this.props.different);
     _.each(toSave, function (b, id) {
       floop.send_get_buf(id);
     });
@@ -157,7 +157,7 @@ module.exports = React.createClass({
           </ol>
         </div>
       }
-    </div>)
+    </div>);
   },
   render: function () {
     const body = this.props.justUpload ? this.render_created_workspace() : this.render_conflicts();
