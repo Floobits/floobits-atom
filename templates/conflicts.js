@@ -103,7 +103,7 @@ module.exports = React.createClass({
   },
   local_: function () {
     this.setState({enabled: false});
-    const toSave = _.merge(this.props.missing, this.props.different);
+    const toSave = _.merge({}, this.props.missing, this.props.different);
     _.each(toSave, function (b, id) {
       floop.send_get_buf(id);
     });
@@ -157,7 +157,7 @@ module.exports = React.createClass({
           </ol>
         </div>
       }
-    </div>)
+    </div>);
   },
   render: function () {
     const body = this.props.justUpload ? this.render_created_workspace() : this.render_conflicts();
