@@ -54,7 +54,6 @@ module.exports = React.createClass({
 
     const that = this;
     async.each(_.keys(floorc.auth), function (host, cb) {
-      const auth =  floorc.auth[host];
       api.get_orgs_can_admin(host, function (err, res, body) {
         const hosts = that.state.hosts;
         if (err) {
