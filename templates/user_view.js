@@ -243,8 +243,9 @@ ImageThumbnailView = React.createClass({
 VideoThumbnailView = React.createClass({
   mixins: [UserView],
   componentDidMount: function () {
+    const n = this.refs.volume.getDOMNode();
     this.id = this.props.connection.visualizer.onVISUALIZE(function (volume) {
-      this.refs.volume.getDOMNode().style.width = volume + "%";
+      n.style.width = volume + "%";
     }, this);
   },
   componentWillUnmount: function () {
