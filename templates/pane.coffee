@@ -11,11 +11,10 @@ class PaneView extends View
     process.nextTick =>
       # Basically Lifted from Mark Hahn's web-browser https://github.com/mark-hahn/web-browser
       # thanks for figuring this out, Mark!
-      @$tabFavicon = $ '<img class="tab-favicon" src="atom://floobits/resources/icon_64x64.png">'
       tabBarView   = $(atom.views.getView(atom.workspace.getActivePane())).find('.tab-bar').view()
       $tabView     = $ tabBarView.tabForItem @pane
-      $tabView.append @$tabFavicon
-      $tabView.find('.title').css paddingLeft: '2.7em'
+      title = $tabView.find('.title')
+      title.addClass "floobits-conflicts-tab"
 
   detached: ->
     console.log "detached"
