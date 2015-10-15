@@ -34,15 +34,14 @@
     background-color: @hlcolor;
     opacity: .8;
   }
-  .floobits-highlight_@{hlcolor}.line-number:before {
-    border-right: @size solid @hlcolor;
-    content: " ";
-    transition: @transition-time;
-  }
   .floobits-border-light_@{hlcolor} .region {
     background-color: @hlcolor;
     -webkit-animation: floobits-highlight-animation 2s ease 1;
     opacity: 0;
+  }
+  .floobits-highlight_@{hlcolor}.line-number:before {
+    border-right: @size solid @hlcolor;
+    content: " ";
   }
 }
 .floobits {
