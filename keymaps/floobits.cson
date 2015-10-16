@@ -11,7 +11,7 @@
 'atom-workspace':
   # 'ctrl-alt-o': 'Floobits: Join Recent Workspace'
   'ctrl-shift-j': 'Floobits: Join Workspace'
-  'ctrl-shift-alt-a': 'Floobits: Follow Changes'
+  'ctrl-shift-alt-a': 'Floobits: Toggle Follow Mode'
   'ctrl-shift-alt-s': 'Floobits: Summon'
 
 
