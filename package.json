@@ -36,7 +36,7 @@
     "async": "1.x",
     "atom-space-pen-views": "2.1.x",
     "dmp": "0.x",
-    "flukes": "0.1.x",
+    "flukes": "0.1.4",
     "fs-plus": "2.x",
     "lodash": "3.x",
     "minimatch": "2.x",
