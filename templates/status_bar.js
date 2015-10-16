@@ -11,7 +11,7 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {
       conn_status: "Connecting...",
-    }
+    };
   },
   componentWillMount: function () {
     const that = this;
