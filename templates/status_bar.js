@@ -10,7 +10,7 @@ module.exports = React.createClass({
   mixins: [flux.createAutoBinder(["me"])],
   getInitialState: function () {
     return {
-      conn_status: "Connecting..",
+      conn_status: "Connecting...",
     }
   },
   componentWillMount: function () {
