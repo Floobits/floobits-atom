@@ -14,15 +14,18 @@
 
 Floobits adds support for real-time collaborative editing to text editors and IDEs.  In addition to Atom, Floobits also supports [Sublime Text](https://github.com/Floobits/floobits-sublime), [Emacs](https://github.com/Floobits/floobits-emacs), [Vim](https://github.com/Floobits/floobits-vim), and [IntelliJ](https://github.com/Floobits/floobits-intellij).
 
-This plugin also allows collaborators to video chat using WebRTC and to share terminals via the [term3 plugin](https://atom.io/packages/term3) without leaving atom.
+This plugin also allows collaborators to video chat using WebRTC and to share terminals via the [term3 plugin](https://atom.io/packages/term3) without leaving Atom.
 
 For a demo of this plugin in action, see [this video](https://www.youtube.com/watch?v=liwChJKd4og) of [ggreer](https://github.com/ggreer) and [btipling](https://github.com/btipling) pairing on [ag](https://github.com/ggreer/the_silver_searcher).
 
 [Documentation](https://floobits.com/help/plugins/atom) is on the Floobits website.
+
+
 ## Configuration
 
-A Floobits account is required.  If you don't have one, the plugin will guide you through the process.
-fdfd
+On first usage, the plugin will guide you through the setup process. If you don't already have a Floobits account, it will help you create one for free.
+
+
 ## Help
 
 If you have trouble setting up or using this plugin, please [contact us](https://floobits.com/help#support).
