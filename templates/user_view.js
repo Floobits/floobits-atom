@@ -57,10 +57,7 @@ const IsMeUserView = React.createClass({
 
 const NotMeUserView = React.createClass({
   kick_: function () {
-    this.props.user.connections.forEach(function (conn) {
-      console.log("kicking", conn);
-      editorAction.kick(conn.id);
-    });
+    this.props.user.kick();
   },
   editPerms_: function () {
     var view = PermissionView({user: this.props.user, me: this.props.me});
@@ -244,12 +241,15 @@ const VideoThumbnailView = React.createClass({
   componentDidMount: function () {
     const n = this.refs.volume.getDOMNode();
     this.id = this.props.connection.visualizer.onVISUALIZE(function (volume) {
-      n.style.width = volume + "%";
+      n.style.height = volume + "px";
+      n.style.width = volume + "px";
+      if (this.state.noMic && volume) {
+        this.setState({noMic: false});
+      }
     }, this);
   },
   componentWillUnmount: function () {
-    var elem = this.refs["user-thumb-" + this.props.connection.id].getDOMNode(),
-      fullscreenElement = utils.getFullscreenElement();
+    const elem = this.refs["user-thumb-" + this.props.connection.id].getDOMNode();
 
     this.props.connection.visualizer.off(this.id);
 
@@ -276,12 +276,7 @@ const VideoThumbnailView = React.createClass({
     webrtcAction.stop_video_chat(this.props.connection.id);
   },
   body: function () {
-    var classNames = ["user-thumb"],
-      poster = ANONYMOUS_PNG;
-
-    if (this.props.user.gravatar) {
-      poster = this.props.user.gravatar + "?s=228";
-    }
+    const classNames = ["user-thumb"];
 
     if (this.props.connection.isMe && !this.props.screenShare) {
       classNames.push("user-my-conn");
@@ -293,15 +288,26 @@ const VideoThumbnailView = React.createClass({
 
     return (
       <div>
-        <i className="user-indicator floobits-close-icon" title="Close" onClick={this.stop}></i>
-        <div className="visualizer" ref="volume"></div>
-        <video className={classNames.join(" ")}
-               ref={"user-thumb-" + this.props.connection.id}
-               onClick={this.onClick} src={this.props.src}
-               autoPlay="autoplay"
-               poster={poster}
-               muted={this.props.connection.isMe ? "muted": null}>
-        </video>
+        <i className="user-indicator floobits-close-icon" title="Stop video chat" onClick={this.stop}></i>
+        <div className="visualizer-container">
+          <div className="visualizer" ref="volume"></div>
+        </div>
+        <div className="user-face">
+          <video className={classNames.join(" ")}
+                 ref={"user-thumb-" + this.props.connection.id}
+                 src={this.props.src}
+                 srcObject={this.props.screenShare ? this.props.connection.screenStream : this.props.connection.stream}
+                 autoPlay="autoplay"
+                 poster={this.poster}
+                 muted={this.props.connection.isMe ? "muted" : null}>
+          </video>
+          <div className="click-to-video" onClick={this.onClick}>
+            <i className="glyphicon glyphicon-fullscreen"></i>&nbsp;
+            Fullscreen video
+          </div>
+        </div>
+        {this.state.noMic &&
+          <i className="glyphicon user-indicator no-mic" title="No sound detected from microphone."></i>}
       </div>
     );
   }
