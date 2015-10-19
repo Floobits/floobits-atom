@@ -2,8 +2,6 @@
 
 ### Remote pair programming across editors.
 
-<img alt="Pairing on ag in Atom" src="https://floobits.com/static/images/atom_pair.gif" width="640" height="360" style="width: 640px; height: 360px;" />
-
 ### Development status: Beta
 
 [![Floobits Status](https://floobits.com/Floobits/atom.svg)](https://floobits.com/Floobits/atom/redirect)
@@ -20,6 +18,21 @@ For a demo of this plugin in action, see [this video](https://www.youtube.com/wa
 
 [Documentation](https://floobits.com/help/plugins/atom) is on the Floobits website.
 
+---
+
+### Video chat in Atom
+
+<img alt="Joining a Floobits workspace in Atom" src="https://floobits.com/static/images/atom-start.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+
+### Collaboratively edit
+
+<img alt="Editing together in Atom" src="https://floobits.com/static/images/atom-edit.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+
+### Share terminals
+
+<img alt="Sharing terminals in Atom" src="https://floobits.com/static/images/atom-term.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+
+---
 
 ## Configuration
 
