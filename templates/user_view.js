@@ -3,24 +3,23 @@
 /** @fileOverview The UI for the userlist. */
 "use strict";
 
-var Connection, UserView, UserlistView, ChatUserlistView, IsMeUserView, NotMeUserView,
-  GravatarThumbnailView, ImageThumbnailView, VideoThumbnailView, ListViewMixin,
-  React = require('react-atom-fork'),
-  flux = require('flukes'),
-  modal = require("../modal"),
-  $ = require('atom-space-pen-views').$,
-  PermissionView = require("./permission_view"),
-  perms = require("../common/permission_model"),
-  editorAction = require("../common/editor_action"),
-  webrtcAction = require("../common/webrtc_action"),
-  utils = require("../utils");
+const React = require("react-atom-fork");
+const flux = require("flukes");
+const $ = require("atom-space-pen-views").$;
+
+const modal = require("../modal");
+const PermissionView = require("./permission_view");
+const perms = require("../common/permission_model");
+const editorAction = require("../common/editor_action");
+const webrtcAction = require("../common/webrtc_action");
+const utils = require("../utils");
 
 
 // const ANONYMOUS_PNG = "/static/images/anonymous.png";
 const ANONYMOUS_PNG = "atom://floobits/resources/anonymous.png";
 
 
-Connection = React.createClass({
+const Connection = React.createClass({
   componentName: "Connection",
   getInitialState: function () {
     return {
@@ -47,7 +46,7 @@ Connection = React.createClass({
   }
 });
 
-IsMeUserView = React.createClass({
+const IsMeUserView = React.createClass({
   render: function () {
     return (
       <div>
@@ -56,7 +55,7 @@ IsMeUserView = React.createClass({
   }
 });
 
-NotMeUserView = React.createClass({
+const NotMeUserView = React.createClass({
   kick_: function () {
     this.props.user.connections.forEach(function (conn) {
       console.log("kicking", conn);
@@ -98,7 +97,7 @@ NotMeUserView = React.createClass({
   },
 });
 
-UserView = {
+const UserView = {
   mixins: [flux.createAutoBinder(['prefs'])],
   getInitialState: function () {
     return {
@@ -173,7 +172,7 @@ UserView = {
   }
 };
 
-GravatarThumbnailView = React.createClass({
+const GravatarThumbnailView = React.createClass({
   mixins: [UserView],
   onClick: function () {
     webrtcAction.start_video_chat(this.props.connection.id);
@@ -194,7 +193,7 @@ GravatarThumbnailView = React.createClass({
   }
 });
 
-ImageThumbnailView = React.createClass({
+const ImageThumbnailView = React.createClass({
   mixins: [UserView],
   render_image: function () {
     this.refs.mugshot.getDOMNode().setAttribute("src", this.props.connection.image.data);
@@ -240,7 +239,7 @@ ImageThumbnailView = React.createClass({
   }
 });
 
-VideoThumbnailView = React.createClass({
+const VideoThumbnailView = React.createClass({
   mixins: [UserView],
   componentDidMount: function () {
     const n = this.refs.volume.getDOMNode();
@@ -308,7 +307,7 @@ VideoThumbnailView = React.createClass({
   }
 });
 
-ListViewMixin = {
+const ListViewMixin = {
   mixins: [flux.createAutoBinder(['users'])],
   /** @inheritDoc */
   render: function () {
@@ -371,13 +370,13 @@ ListViewMixin = {
   }
 };
 
-ChatUserlistView = React.createClass({
+const ChatUserlistView = React.createClass({
   mixins: [ListViewMixin],
   componentName: "ChatUserlistView",
   isListView: true,
 });
 
-UserlistView = React.createClass({
+const UserlistView = React.createClass({
   componentName: "UserlistView",
   mixins: [ListViewMixin],
   isListView: false,
