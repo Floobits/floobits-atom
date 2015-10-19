@@ -22,15 +22,15 @@ For a demo of this plugin in action, see [this video](https://www.youtube.com/wa
 
 ### Video chat in Atom
 
-<img alt="Joining a Floobits workspace in Atom" src="https://floobits.com/static/images/atom-start.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+<img alt="Joining a Floobits workspace in Atom" src="https://floobits.com/static/images/atom-start.gif" width="640" height="400" style="width: 640px; height: 400px;" />
 
 ### Collaboratively edit
 
-<img alt="Editing together in Atom" src="https://floobits.com/static/images/atom-edit.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+<img alt="Editing together in Atom" src="https://floobits.com/static/images/atom-edit.gif" width="640" height="400" style="width: 640px; height: 400px;" />
 
 ### Share terminals
 
-<img alt="Sharing terminals in Atom" src="https://floobits.com/static/images/atom-term.gif" width="860" height="540" style="width: 860px; height: 540px;" />
+<img alt="Sharing terminals in Atom" src="https://floobits.com/static/images/atom-term.gif" width="640" height="400" style="width: 640px; height: 400px;" />
 
 ---
 
