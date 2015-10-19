@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-/*global $, _, React */
+/*global  */
 /** @fileOverview The UI for the userlist. */
 "use strict";
 
@@ -41,15 +41,6 @@ const Connection = React.createClass({
            <a href="#"><i className="floobits-eject-icon"></i> Kick</a>
           </span>
         }
-      </div>
-    );
-  }
-});
-
-const IsMeUserView = React.createClass({
-  render: function () {
-    return (
-      <div>
       </div>
     );
   }
@@ -109,12 +100,12 @@ const UserView = {
     this.state.opened = !!this.state.opened;
   },
   render: function () {
-    var connectionNodes = [], user, isAdmin, me, isListView, isFollowing, inVideoChat = false;
-
-    user = this.props.user;
-    me = this.props.me;
-    isAdmin = me.isAdmin;
-    isListView = this.props.isListView;
+    const user = this.props.user;
+    const me = this.props.me;
+    const isAdmin = me.isAdmin;
+    const isListView = this.props.isListView;
+    let connectionNodes = [];
+    let inVideoChat = false;
     user.connections.forEach(function (connection) {
       if (!inVideoChat && connection.inVideoChat) {
         inVideoChat = true;
@@ -126,7 +117,7 @@ const UserView = {
         me={me} username={user.username} isListView={this.props.isListView} isAdmin={isAdmin} />);
     }, this);
 
-    isFollowing = this.props.prefs.followUsers.indexOf(user.id) !== -1;
+    const isFollowing = this.props.prefs.followUsers.indexOf(user.id) !== -1;
 
     return (
       <div ref="user" className={"user" + (this.state.opened ? " opened" : "")}>
@@ -150,13 +141,14 @@ const UserView = {
               {connectionNodes}
             </div>
             <hr/>
-            <div className="stack-up-content">
-              {this.props.connection.isMe ?
-                <IsMeUserView user={user} isAdmin={isAdmin} connection={this.props.connection} /> :
-                <NotMeUserView user={user} isAdmin={isAdmin} isListView={isListView} isFollowing={isFollowing} />
-              }
-            </div>
-            <hr style={{clear: "both"}}/>
+            {!this.props.connection.isMe &&
+              <div>
+                <div className="stack-up-content">
+                  <NotMeUserView user={user} isAdmin={isAdmin} isListView={isListView} isFollowing={isFollowing} />
+                </div>
+                <hr style={{clear: "both"}}/>
+              </div>
+             }
           </div>
         </div>
         <div className="user-bar" onClick={this.settingsClick}>
@@ -317,12 +309,10 @@ const ListViewMixin = {
   mixins: [flux.createAutoBinder(['users'])],
   /** @inheritDoc */
   render: function () {
-    var thumbnailNodes = [], isListView, user, isAdmin, me, prefs;
+    var thumbnailNodes = [], isListView, me, prefs;
 
-    user = this.props.user;
     me = this.props.me;
     isListView = this.isListView;
-    isAdmin = me.isAdmin;
     prefs = this.props.prefs;
 
     this.props.users.forEach(function (user) {
