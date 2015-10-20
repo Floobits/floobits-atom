@@ -1,6 +1,10 @@
 @import "./util.less";
 @import "./icons.less";
 
+@userBarHeight: 32px;
+@iconFontSize: 20px;
+@iconPadding: 3px;
+
 .userlist-icon {
   border: 1px solid;
   opacity: 0.45;
@@ -40,14 +44,21 @@
       border: 1px solid @thumbnailGrayShadow;
       background-color: @thumbnailGrayShadow;
     }
-    .visualizer {
+    .visualizer-container {
       position: absolute;
-      top: 0;
-      left: 0;
-      background-color: @fl-green;
-      width: 0px;
-      height: 3px;
-      z-index: @zPlane1;
+      top: -2px;
+      left: -2px;
+      height: @userBarHeight;
+      width: @userBarHeight;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .visualizer {
+        background-color: @white;
+        border-radius: 50%;
+        opacity: 0.45;
+        z-index: @zPlane1;
+      }
     }
     i.user-stop {
       top: 3px;
@@ -77,6 +88,27 @@
       }
       &.audio-only {
         transform: scaleX(1);
+      }
+    }
+    .user-face {
+      .click-to-video {
+        .noselect;
+        .pos(0, 0, @userBarHeight, 0);
+        .user-thumbnail-background;
+        .user-thumbnail-text;
+        display: none;
+        font-size: @iconFontSize;
+        padding-top: (@userThumbHeight - @userBarHeight) / 2;
+        text-align: center;
+        cursor: pointer;
+        // In Chrome, transform properties mess with z-index. This is a workaround.
+        z-index: @zPlane1;
+        .glyphicon {
+          top: @iconPadding;
+        }
+      }
+      &:hover .click-to-video {
+        display: block;
       }
     }
     &.opened {
