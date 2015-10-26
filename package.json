@@ -1,7 +1,7 @@
 {
   "name": "floobits",
   "main": "./lib/floobits",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "The Floobits pair programming plugin for Atom.  This plugin adds support for real-time collaborative editing, video chatting, and sharing terminals via the Term3 plugin.  A Floobits account is required, but the plugin will guide you.",
   "maintainers": [
     {
