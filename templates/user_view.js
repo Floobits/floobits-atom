@@ -265,7 +265,11 @@ const VideoThumbnailView = React.createClass({
     if (this.props.screenShare) {
       return webrtcAction.stop_screen(this.props.connection.id);
     }
-    webrtcAction.stop_video_chat(this.props.connection.id);
+    if (this.props.connection.audioOnly) {
+      webrtcAction.stop_audio_chat(this.props.connection.id);
+    } else {
+      webrtcAction.stop_video_chat(this.props.connection.id);
+    }
   },
   body: function () {
     const classNames = ["user-thumb"];
