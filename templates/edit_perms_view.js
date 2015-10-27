@@ -75,6 +75,9 @@ module.exports = React.createClass({
       }
     }
   },
+  close: function () {
+    this.getDOMNode().parentNode.destroy();
+  },
   save: function () {
     var data = {
       perms: {},
@@ -100,7 +103,7 @@ module.exports = React.createClass({
     }, this);
     this.ajax({
       type: "put",
-      url: "/api/workspace/" + data.owner + "/" + data.name,
+      url: this.props.floourl.toAPIString(),
       contentType: "application/json",
       data: JSON.stringify(data),
       success: _.bind(function () {
@@ -189,7 +192,7 @@ module.exports = React.createClass({
       input.value = "";
       return;
     }
-    const url = `https://${this.props.floourl.host}/autocomplete/json_username/${value}`;
+    const url = `https://${this.props.floourl.host}/api/autocomplete/json_username/${value}`;
     const that = this;
     this.ajax({
       type: "GET",
@@ -346,7 +349,7 @@ module.exports = React.createClass({
     return (
       <div>
         <button className="btn btn-default btn-danger" onClick={this.save}>Save</button>
-        <button className="btn btn-default" data-dismiss="modal">Close</button>
+        <button className="btn btn-default" onClick={this.close}>Close</button>
       </div>
     );
   }
