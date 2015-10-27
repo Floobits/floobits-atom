@@ -14,6 +14,7 @@ module.exports = React.createClass({
     this.workspace = this.props.floourl.workspace;
     return {
       secret: null,
+      isOrg: false,
       usernames: [],
       perms: [],
       selectedIndex: -1,
@@ -59,7 +60,9 @@ module.exports = React.createClass({
           newUser: null,
           secret: data.secret,
           perms,
-          anonUser});
+          isOrg: data.isOrg,
+          anonUser
+        });
       }.bind(this)
     });
   },
@@ -111,8 +114,8 @@ module.exports = React.createClass({
         this.loadData();
         this.close();
       }, this),
-      error: function () {
-        console.log("error saving permission data");
+      error: function (e) {
+        throw new Error(e);
       }
     });
   },
@@ -284,9 +287,11 @@ module.exports = React.createClass({
     const anonInputs = TYPES.filter(function (type) { return type !== "admin_room"; })
       .map(this.getInput.bind(this, "anon_", anonUser));
 
+    const workspace = this.props.floourl.workspace;
+    const owner = this.props.floourl.owner;
     return (
       <div id="edit-perms-content-wizard" className="workspace-wizard">
-        <p className="wizard-section no-content"><strong>Edit Permissions for this Workspace</strong></p>
+        <p className="wizard-section no-content"><strong>Edit Permissions for {owner}/{workspace}</strong></p>
         <div id="secret-content" className="wizard-section">
           <label>This workspace is secret <input type="checkbox" id="secret-workspace"
             ref="isSecret"
@@ -333,12 +338,12 @@ module.exports = React.createClass({
           </table>
         </div>
 
-        {false && (<div>
+        {this.state.isOrg && (<div>
           <div>
-              <a href={"/" + this.owner + "/members"}>Add a member to your organization.</a>
+            <a href={"/" + this.owner + "/members"}>Add a member to your organization.</a>
           </div>
-            <div>
-              <a href={"/" + this.owner + "/invite"}>Invite users to your organization.</a>
+          <div>
+            <a href={"/" + this.owner + "/invite"}>Invite users to your organization.</a>
           </div>
         </div>)}
         {this.renderFooter()}
