@@ -25,12 +25,9 @@ module.exports = React.createClass({
     this.loadData();
   },
   loadData: function () {
-    const auth = this.props.auth;
-    $.ajax({
+    this.ajax({
       type: "GET",
       url: this.props.floourl.toAPIString(),
-      username: auth.username || auth.api_key,
-      password: auth.secret,
       success: function (data) {
         var anonUser, perms = [];
 
@@ -101,7 +98,7 @@ module.exports = React.createClass({
       }
       return this.refs["anon_" + type].getDOMNode().checked;
     }, this);
-    $.ajax({
+    this.ajax({
       type: "put",
       url: "/api/workspace/" + data.owner + "/" + data.name,
       contentType: "application/json",
@@ -177,6 +174,12 @@ module.exports = React.createClass({
         break;
     }
   },
+  ajax: function (data) {
+    const auth = this.props.auth;
+    data.username = auth.username || auth.api_key;
+    data.password = auth.secret;
+    $.ajax(data);
+  },
   fetchAutoComplete_: function () {
     var value, input = this.refs.editAutocomplete.getDOMNode();
     value = input.value || "";
@@ -186,17 +189,24 @@ module.exports = React.createClass({
       input.value = "";
       return;
     }
-    $.get("/autocomplete/json_username/" + value, function (users) {
-      if (!(users && users.length && this.isMounted())) {
-        return;
+    const url = `https://${this.props.floourl.host}/autocomplete/json_username/${value}`;
+    const that = this;
+    this.ajax({
+      type: "GET",
+      url: url,
+      success: function (users) {
+        if (!(users && users.length && that.isMounted())) {
+          return;
+        }
+        that.setState({"usernames": users, selectedIndex: 0});
+      },
+      error: function () {
+        if (!that.isMounted()) {
+          return;
+        }
+        that.setState({"usernames": [], selectedIndex: -1});
       }
-      this.setState({"usernames": users, selectedIndex: 0});
-    }.bind(this)).error(function () {
-      if (!this.isMounted()) {
-        return;
-      }
-      this.setState({"usernames": [], selectedIndex: -1});
-    }.bind(this));
+    });
   },
   handlePermissionChange_: function (type, index) {
     var checked, refKey, permIndex = TYPES.indexOf(type);
@@ -239,12 +249,11 @@ module.exports = React.createClass({
    * @private
    */
   renderBody: function () {
-    var users, anonUser, usernames, newInputs, anonInputs;
     if (this.state.secret === null) {
       return (<p>Loading</p>);
     }
-    anonUser = this.state.anonUser;
-    users = this.state.perms.map(function (user, index) {
+    const anonUser = this.state.anonUser;
+    const users = this.state.perms.map(function (user, index) {
       var inputs = TYPES.map(function (type) {
         return this.getInput(index, user, type);
       }, this);
@@ -255,7 +264,7 @@ module.exports = React.createClass({
         </tr>
       );
     }, this);
-    usernames = this.state.usernames.map(function (user, index) {
+    const usernames = this.state.usernames.map(function (user, index) {
       return (
         <li
           key={user.user + index}
@@ -268,8 +277,8 @@ module.exports = React.createClass({
         </li>
       );
     }, this);
-    newInputs = TYPES.map(this.getInput.bind(this, "new_", null));
-    anonInputs = TYPES.filter(function (type) { return type !== "admin_room"; })
+    const newInputs = TYPES.map(this.getInput.bind(this, "new_", null));
+    const anonInputs = TYPES.filter(function (type) { return type !== "admin_room"; })
       .map(this.getInput.bind(this, "anon_", anonUser));
 
     return (
