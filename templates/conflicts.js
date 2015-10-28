@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-
+/*global fl */
 "use strict";
 
 const _ = require("lodash");

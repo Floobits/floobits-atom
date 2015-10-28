@@ -67,7 +67,7 @@ const JoinWorkspace = React.createClass({
     }
     this.setState({path: path});
   },
-  focusFileInput: function (event) {
+  focusFileInput: function () {
     if (this.state.path) {
       return;
     }

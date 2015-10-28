@@ -23,8 +23,8 @@ module.exports = React.createClass({
     this.destroy();
   },
   render: function () {
-    permsEvent['user_id'] = this.props.userId;
-    permsEvent['perms'] = this.props.perms;
+    permsEvent.user_id = this.props.userId;
+    permsEvent.perms = this.props.perms;
     return (
       <div>
         <div className="row">

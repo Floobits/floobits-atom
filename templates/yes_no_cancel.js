@@ -4,12 +4,11 @@
 
 const React = require('react-atom-fork');
 const mixins = require("./mixins");
-const wrapper = require("../react_wrapper");
 const atomUtils = require("../atom_utils");
 
 const YesNoCancel = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
-  onSubmit: function (type, event) {
+  onSubmit: function (type) {
     if (!type) {
       type = "yes";
     } else if (type.target) {
