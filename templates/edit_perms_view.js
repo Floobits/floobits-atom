@@ -14,7 +14,7 @@ module.exports = React.createClass({
     this.workspace = this.props.floourl.workspace;
     return {
       secret: null,
-      isOrg: false,
+      is_org: false,
       usernames: [],
       perms: [],
       selectedIndex: -1,
@@ -60,7 +60,7 @@ module.exports = React.createClass({
           newUser: null,
           secret: data.secret,
           perms,
-          isOrg: data.isOrg,
+          is_org: data.is_org,
           anonUser
         });
       }.bind(this)
@@ -338,7 +338,7 @@ module.exports = React.createClass({
           </table>
         </div>
 
-        {this.state.isOrg && (<div>
+        {this.state.is_org && (<div>
           <div>
             <a href={"/" + this.owner + "/members"}>Add a member to your organization.</a>
           </div>
