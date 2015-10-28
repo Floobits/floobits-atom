@@ -5,10 +5,8 @@
 
 const async = require("async");
 const _ = require("lodash");
-const path = require("path");
 const React = require('react-atom-fork');
 const open_url = require("open");
-const $ = require('atom-space-pen-views').$;
 const floorc = require("../common/floorc");
 const api = require("../common/api");
 const constants = require("../common/constants");
@@ -134,7 +132,7 @@ module.exports = React.createClass({
           this.setState({
             error: "A workspace with that name already exists.",
             needsMonies: false,
-            name: this.state.name+"1"}
+            name: this.state.name + "1"}
           );
           return;
         default:
@@ -171,9 +169,8 @@ module.exports = React.createClass({
         return 0;
       } else if (a < b) {
         return -1;
-      } else {
-        return 1;
       }
+      return 1;
     });
     const that = this;
     return (
@@ -227,16 +224,15 @@ module.exports = React.createClass({
         return 0;
       } else if (a < b) {
         return -1;
-      } else {
-        return 1;
       }
+      return 1;
     });
     const that = this;
     const labels = owners.map(function (o) {
       return (
         <label className="radio-inline native-key-bindings" key={o}>
           <input type="radio" onChange={that.onChangedOwner} name="owner" tabIndex="5"
-            value={o} className="native-key-bindings" checked={o===that.state.owner}/> {o}
+            value={o} className="native-key-bindings" checked={o === that.state.owner}/> {o}
         </label>
       );
     });

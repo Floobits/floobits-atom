@@ -27,7 +27,7 @@ var PermissionView = React.createClass({
     return (
       <div className="field_wrapper" key={name}>
         <label htmlFor={"id_" + name}>{label}</label>
-        <input onChange={_.bind(this.handleChange_, this, name)} ref={name} id={"id_"+name} type="checkbox" checked={this.state[name]}  />
+        <input onChange={_.bind(this.handleChange_, this, name)} ref={name} id={"id_" + name} type="checkbox" checked={this.state[name]} />
         <div>
           <small className="text-info">{description}</small>
         </div>

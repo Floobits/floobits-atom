@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 
-"use babel";
 "use strict";
+"use babel";
 
 const React = require("react-atom-fork");
-const _ = require("lodash");
 const mixins = require("./mixins");
 const UserlistView = require("./user_view").UserlistView;
 
