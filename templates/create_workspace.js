@@ -106,6 +106,16 @@ module.exports = React.createClass({
     const owner = this.state.owner;
     const room_perms = {AnonymousUser: perms};
     api.create_workspace(host, name, owner, room_perms, function (err, res, body) {
+      if (err) {
+        atom.confirm({
+          message: "Could not Create Workspace",
+          detailedMessage: err.toString(),
+          buttons: {"OK": function () {}}
+        });
+        console.error(err, res, body);
+        return;
+      }
+
       console.log(err, res, body);
       const code = res.statusCode;
 
