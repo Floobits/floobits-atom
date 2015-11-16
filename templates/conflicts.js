@@ -162,8 +162,7 @@ module.exports = React.createClass({
   render: function () {
     const body = this.props.justUpload ? this.render_created_workspace() : this.render_conflicts();
     return (
-      // overlay is an atom styling hack (used for modals)
-      <div className="native-key-bindings overlay" style={{overflow: "auto", border: 0, padding: 10, left: 0, top: 0, margin: 0, width: "100%", height: "100%"}} >
+      <div className="native-key-bindings" style={{overflow: "auto", border: 0, padding: 10, left: 0, top: 0, margin: 0, width: "100%", height: "100%"}} >
         {body}
       </div>
     );
