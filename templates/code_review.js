@@ -14,17 +14,17 @@ const CodeReview = React.createClass({
     this.destroy();
   },
   componentDidMount: function () {
-    this.refs.yes.getDOMNode().focus();
+    this.refs.description.getDOMNode().focus();
   },
   render: function () {
     return (
       <form>
-        <h2 style={{textAlign: "center"}}>Experimental: Code Review</h2>
+        <h2 style={{textAlign: "center"}}>Code Review</h2>
         <div className="well">
           <div className="row">
             <div className="col-md-12">
-              Please describe your problem:
-              <textarea ref="description" rows={3} style={{width: "100%", height: "100%", color: "black"}}>
+              Please describe your problem.  A human will look at your code and try to help you.
+              <textarea className="native-key-bindings" ref="description" rows={3} style={{width: "100%", height: "100%", color: "black"}}>
               </textarea>
             </div>
           </div>
