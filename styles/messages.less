@@ -1,0 +1,59 @@
+@time-width: 60px;
+
+.floobits-messages-container {
+  .messages-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    .message {
+      font-size: 13px;
+      border: 0px solid;
+      .message-content {
+        font-size: 13px;
+        padding: 8px 0;
+        margin: 0px;
+        text-align: left;
+        a {
+          text-decoration: underline;
+        }
+        img {
+          max-width: 100%;
+          max-height: 400px;
+          display: block;
+        }
+        .messages-image-container {
+          position: relative;
+          .messages-remove-image {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            //color: @black;
+            opacity: 0.45;
+          }
+          img {
+            position: relative;
+            left: 20px;
+          }
+        }
+      }
+      .message-log-repeat {
+        font-size: 9px;
+        font-weight: bold;
+      }
+      .message-text {
+        margin-left: @time-width;
+        line-height: 18px;
+      }
+      .message-username {
+        font-weight: bold;
+      }
+      .message-timestamp {
+        width: @time-width;
+        opacity: 0.6;
+        margin-left: 2px;
+        float: left;
+        line-height: 18px;
+        font-size: 11px;
+      }
+    }
+  }
+}
