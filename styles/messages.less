@@ -1,6 +1,25 @@
+@import "colors.less";
 @time-width: 60px;
 
 .floobits-messages-container {
+  .chat-input-container {
+    form {
+      .chat-input {
+        width: 100%;
+        border: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid #000;
+        color: black;
+        padding: 5px;
+      }
+      input {
+        width: 100%;
+      }
+    }
+  }
   .messages-list {
     overflow-x: hidden;
     overflow-y: auto;
