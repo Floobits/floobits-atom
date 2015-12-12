@@ -6,11 +6,8 @@ const React = require('react-atom-fork');
 const utils = require("../utils");
 const floop = require("../common/floop");
 const flux = require("flukes");
+const message_action = require("../common/message_action");
 
-function prettyTime (t) {
-  const d = utils.formatDate(new Date(t));
-  return `${d.hour}:${d.minute} ${d.meridian}`;
-}
 module.exports = React.createClass({
   mixins: [flux.createAutoBinder(['msgs'])],
   handleMessage_: function (event) {
@@ -24,7 +21,7 @@ module.exports = React.createClass({
       console.error(error);
       txt = error;
     }
-    this.props.msgs.push({username: this.props.username, time: Date.now(), data: txt});
+    message_action.user(this.props.username, txt, Date.now());
   },
   componentDidMount: function () {
     this.focus();
@@ -38,7 +35,7 @@ module.exports = React.createClass({
       return (
         <div className="message">
           <div className="message-content">
-            <div className="message-timestamp">{prettyTime(msg.time)}</div>
+            <div className="message-timestamp">{msg.prettyTime}</div>
             <div className="message-text">
               <span className="message-username">
                 <span className="user-color-square" style={{backgroundColor: userColor}}></span>
