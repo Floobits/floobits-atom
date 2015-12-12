@@ -16,12 +16,13 @@ module.exports = React.createClass({
   handleMessage_: function (event) {
     event.preventDefault();
     const input = this.refs.newMessage.getDOMNode();
-    const txt = input.value;
+    let txt = input.value;
     input.value = "";
     const ret = floop.send_msg({data: txt});
     if (ret) {
-      console.error(ret);
-      return;
+      const error = ret.message || ret.toString();
+      console.error(error);
+      txt = error;
     }
     this.props.msgs.push({username: this.props.username, time: Date.now(), data: txt});
   },
