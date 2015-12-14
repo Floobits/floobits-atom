@@ -208,8 +208,8 @@ const MessagesView = React.createClass({
     if (!this.props.hideChat) {
       chatInput = (
         <div className="chat-input-container">
-          <form onSubmit={this.handleMessage_}>
-            <input type="text" ref="newMessage" defaultValue="" className="chat-input" placeholder="type here to chat"/>
+          <form onSubmit={this.handleMessage_} className="native-key-bindings">
+            <input type="text" ref="newMessage" defaultValue="" className="chat-input native-key-bindings" placeholder="type here to chat"/>
           </form>
         </div>
       );
