@@ -160,7 +160,7 @@ const MessagesView = React.createClass({
       return;
     }
     input.value = "";
-    messageAction.user(this.props.username, value, Date.now());
+    messageAction.user(this.props.username, value, Date.now() / 1000);
   },
   componentDidMount: function () {
     // focus in chat but not editor proxy :(
