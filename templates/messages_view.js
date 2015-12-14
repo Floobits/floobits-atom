@@ -22,7 +22,7 @@ const LogMessageView = React.createClass({
       <div className={"message alert alert-" + message.levelName} role="alert">
         <div className="message-content">
           <div className="message-timestamp">{message.prettyTime}</div>
-          <div className="message-text">{message.msg} {repeatCountHTML} </div>
+          <div className="message-text"><img src="atom://floobits/resources/icon_64x64.png" className="floobits-square" />{message.msg} {repeatCountHTML} </div>
         </div>
       </div>
     );
