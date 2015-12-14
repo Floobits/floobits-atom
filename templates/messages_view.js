@@ -6,6 +6,7 @@ const React = require('react-atom-fork');
 const _ = require("lodash");
 const utils = require("../utils");
 const floop = require("../common/floop");
+const messageAction = require("../common/message_action");
 
 
 const LogMessageView = React.createClass({
@@ -149,14 +150,17 @@ const InteractiveMessageView = React.createClass({
 const MessagesView = React.createClass({
   mixins: [flux.createAutoBinder(["messages"])],
   handleMessage_: function (event) {
-    var input, ret;
     event.preventDefault();
-    input = this.refs.newMessage.getDOMNode();
-    ret = floop.send_msg({data: input.value});
+    const input = this.refs.newMessage.getDOMNode();
+    const value = input.value;
+    let ret = floop.send_msg({data: value});
     if (ret) {
-      console.error(ret);
+      ret = ret.message || ret.toString();
+      messageAction.error(ret, false);
+      return;
     }
     input.value = "";
+    messageAction.user(this.props.username, value, Date.now());
   },
   componentDidMount: function () {
     // focus in chat but not editor proxy :(
