@@ -1,5 +1,8 @@
 @import "colors.less";
+@import "util.less";
+
 @time-width: 60px;
+
 
 .floobits-messages-container {
   .chat-input-container {
@@ -26,6 +29,10 @@
     .message {
       font-size: 13px;
       border: 0px solid;
+      &.alert {
+        .nomar_nopad;
+        background-color: inherit;
+      }
       .message-content {
         font-size: 13px;
         padding: 8px 0;
@@ -67,11 +74,11 @@
       }
       .message-timestamp {
         width: @time-width;
-        opacity: 0.6;
         margin-left: 2px;
         float: left;
         line-height: 18px;
         font-size: 11px;
+        color: #919191;
       }
     }
   }
