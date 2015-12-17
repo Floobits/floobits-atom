@@ -1,5 +1,4 @@
 /** @jsx React.DOM */
-/*global fl */
 "use strict";
 
 const React = require('react-atom-fork');
