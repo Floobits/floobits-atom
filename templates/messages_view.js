@@ -171,7 +171,7 @@ const MessagesView = React.createClass({
   getMessages: function () {
     const messages = [];
     let prevLogMessage = null;
-    this.props.messages.forEach(function (message ) {
+    this.props.messages.forEach(function (message) {
       if (message.type !== "log") {
         prevLogMessage = null;
         messages.push({message});

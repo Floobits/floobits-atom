@@ -169,7 +169,7 @@ module.exports = React.createClass({
       return (<div></div>);
     }
     if (auths.length === 1 && auths[0] === constants.HOST) {
-      return (<div></div>);
+      return (<div>{auths[0]}</div>);
     }
     auths.sort(function (a, b) {
       if (a === constants.HOST) {
