@@ -190,8 +190,8 @@ const MessagesView = React.createClass({
     this.refs.newMessage.getDOMNode().focus();
   },
   render: function () {
-    var nodes, chatInput = "";
-    nodes = this.getMessages().map(function (messageObj) {
+    let chatInput = "";
+    const nodes = this.getMessages().map(function (messageObj) {
       const message = messageObj.message;
       switch (message.type) {
         case "user":
