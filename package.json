@@ -46,7 +46,7 @@
     "react-tools": "0.11.x",
     "reactionary-atom-fork": "1.x",
     "request": "2.x",
-    "event-kit": "1.3.x",
+    "event-kit": "1.5.x",
     "chokidar": "1.x"
   },
   "consumedServices": {
