@@ -20,6 +20,7 @@ module.exports = React.createClass({
       selectedIndex: -1,
       newUser: null,
       anonUser: null,
+      error: null,
     };
   },
   componentWillMount: function () {
@@ -61,61 +62,65 @@ module.exports = React.createClass({
           secret: data.secret,
           perms,
           is_org: data.is_org,
-          anonUser
+          anonUser,
+          error: null,
         });
-      }.bind(this)
+      }
     });
   },
   componentDidUpdate: function () {
-    var selected, el;
-    selected = this.refs.selected;
-    if (selected) {
-      el = selected.getDOMNode();
-      if (_.isFunction(el.scrollIntoViewIfNeeded)) {
-        el.scrollIntoViewIfNeeded();
-      } else {
-        el.scrollIntoView();
-      }
+    const selected = this.refs.selected;
+    if (!selected) {
+      return;
+    }
+    let el = selected.getDOMNode();
+    if (_.isFunction(el.scrollIntoViewIfNeeded)) {
+      el.scrollIntoViewIfNeeded();
+    } else {
+      el.scrollIntoView();
     }
   },
   close: function () {
     this.getDOMNode().parentNode.destroy();
   },
   save: function () {
-    var data = {
+    const data = {
       perms: {},
       secret: this.refs.isSecret.getDOMNode().checked,
       name: this.workspace,
       owner: this.owner,
     };
-    this.state.perms.forEach(function (user, index) {
-      data.perms[user.id] = TYPES.filter(function (type) {
+    this.state.perms.forEach((user, index) => {
+      data.perms[user.id] = TYPES.filter((type) => {
         return this.refs["" + index + type].getDOMNode().checked;
-      }, this);
-    }, this);
+      });
+    });
     if (this.state.newUser) {
-      data.perms[this.state.newUser.user] = TYPES.filter(function (type) {
+      data.perms[this.state.newUser.user] = TYPES.filter((type) => {
         return this.refs["new_" + type].getDOMNode().checked;
-      }, this);
+      });
     }
-    data.perms.AnonymousUser = TYPES.filter(function (type) {
+    data.perms.AnonymousUser = TYPES.filter((type) => {
       if (type === "admin_room") {
         return false;
       }
       return this.refs["anon_" + type].getDOMNode().checked;
-    }, this);
+    });
     this.ajax({
       type: "put",
       url: this.props.floourl.toAPIString(),
       contentType: "application/json",
       data: JSON.stringify(data),
-      success: _.bind(function () {
+      success: () => {
         console.log("success saving permission data", arguments);
+        // TODO: this is wasteful. it does another XHR. We could just look at the success response here
         this.loadData();
         this.close();
-      }, this),
-      error: function (e) {
-        throw new Error(e);
+      },
+      error: (e) => {
+        this.setState({
+          errors: e.statusText || "Unknown error. :(",
+        });
       }
     });
   },
@@ -345,6 +350,9 @@ module.exports = React.createClass({
           <div>
             <a href={"/" + this.owner + "/invite"}>Invite users to your organization.</a>
           </div>
+        </div>)}
+        {this.state.error && (<div className="alert alert-danger">
+          Error saving permissions: {this.state.errors}
         </div>)}
         {this.renderFooter()}
       </div>
