@@ -30,15 +30,14 @@ module.exports = React.createClass({
     this.ajax({
       type: "GET",
       url: this.props.floourl.toAPIString(),
-      success: function (data) {
-        var anonUser, perms = [];
-
+      success: (data) => {
         if (!this.isMounted()) {
           return;
         }
-
-        _.map(data.perms, function (permissions, username) {
-          var user = {
+        let anonUser;
+        let perms = [];
+        _.map(data.perms, (permissions, username) => {
+          const user = {
             id: username,
             permissions,
           };
@@ -154,12 +153,12 @@ module.exports = React.createClass({
     }
   },
   autoComplete_: function (event) {
-    var keyCode, down, up, tab, enter, selectedIndex;
-    up = 38;
-    down = 40;
-    tab = 9;
-    enter = 13;
-    keyCode = event.keyCode;
+    const up = 38;
+    const down = 40;
+    const tab = 9;
+    const enter = 13;
+    const keyCode = event.keyCode;
+    let selectedIndex;
     switch (keyCode) {
       case down:
         //move down or up if at the end
@@ -220,10 +219,10 @@ module.exports = React.createClass({
     });
   },
   handlePermissionChange_: function (type, index) {
-    var checked, refKey, permIndex = TYPES.indexOf(type);
-    refKey = "" + index + type;
-    checked = this.refs[refKey].getDOMNode().checked;
-    TYPES.forEach(function (t, i) {
+    const permIndex = TYPES.indexOf(type);
+    let refKey = "" + index + type;
+    const checked = this.refs[refKey].getDOMNode().checked;
+    TYPES.forEach((t, i) => {
       if (index === "anon_" && t === "admin_room") {
         return;
       }
@@ -233,10 +232,10 @@ module.exports = React.createClass({
       } else if (!checked && i < permIndex) {
         this.refs[refKey].getDOMNode().checked = false;
       }
-    }, this);
+    });
   },
   getInput: function (index, user, type) {
-    var labels = {
+    const labels = {
       "admin_room": "Admin",
       "edit_room": "Edit",
       "request_perms": "Request permissions",

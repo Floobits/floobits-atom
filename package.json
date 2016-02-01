@@ -38,7 +38,7 @@
     "dmp": "0.x",
     "flukes": ">=0.1.4",
     "fs-plus": "2.x",
-    "lodash": "3.x",
+    "lodash": "4.x",
     "minimatch": "3.x",
     "mkdirp": "0.5.x",
     "open": "0.x",
