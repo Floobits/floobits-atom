@@ -16,6 +16,7 @@
         { 'label': 'Leave Workspace', 'command': 'Floobits: Leave Workspace' }
         { 'label': 'Create Workspace', 'command': 'Floobits: Create Workspace' }
         { 'label': 'Add Current File', 'command': 'Floobits: Add Current File' }
+        { 'label': 'Toggle User List', 'command': 'Floobits: User List Panel' }
       ]
     ]
   }
