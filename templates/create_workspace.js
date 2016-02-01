@@ -287,7 +287,7 @@ module.exports = React.createClass({
   render_create_new_workspace_option: function () {
     const url = this.props.url;
     if (!url) {
-      return;
+      return undefined;
     }
     return (
       <div>
