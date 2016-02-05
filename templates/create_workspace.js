@@ -165,8 +165,11 @@ module.exports = React.createClass({
   },
   render_auth: function () {
     const auths = _.keys(this.state.hosts);
-    if (auths.length <= 1) {
-      return;
+    if (auths.length === 0) {
+      return (<div></div>);
+    }
+    if (auths.length === 1 && auths[0] === constants.HOST) {
+      return (<div>{auths[0]}</div>);
     }
     auths.sort(function (a, b) {
       if (a === constants.HOST) {
@@ -284,7 +287,7 @@ module.exports = React.createClass({
   render_create_new_workspace_option: function () {
     const url = this.props.url;
     if (!url) {
-      return;
+      return undefined;
     }
     return (
       <div>

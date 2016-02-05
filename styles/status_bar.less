@@ -1,3 +1,14 @@
-.floobits-status-bar {
-  font-size: 11px;
+@import "ui-variables";
+
+floobits-status-bar {
+  .floobits-status-bar {
+    font-size: 11px;
+    // This fixes styling with many popular themes.
+    padding: 2px @component-line-height/2;
+    background: inherit;
+  }
+  // This fixes styling with many popular themes.
+  padding-left: 0 !important;
+  display: inline-block;
+  width: 100%;
 }

@@ -20,6 +20,7 @@ module.exports = React.createClass({
       selectedIndex: -1,
       newUser: null,
       anonUser: null,
+      error: null,
     };
   },
   componentWillMount: function () {
@@ -29,15 +30,14 @@ module.exports = React.createClass({
     this.ajax({
       type: "GET",
       url: this.props.floourl.toAPIString(),
-      success: function (data) {
-        var anonUser, perms = [];
-
+      success: (data) => {
         if (!this.isMounted()) {
           return;
         }
-
-        _.map(data.perms, function (permissions, username) {
-          var user = {
+        let anonUser;
+        let perms = [];
+        _.map(data.perms, (permissions, username) => {
+          const user = {
             id: username,
             permissions,
           };
@@ -61,61 +61,65 @@ module.exports = React.createClass({
           secret: data.secret,
           perms,
           is_org: data.is_org,
-          anonUser
+          anonUser,
+          error: null,
         });
-      }.bind(this)
+      }
     });
   },
   componentDidUpdate: function () {
-    var selected, el;
-    selected = this.refs.selected;
-    if (selected) {
-      el = selected.getDOMNode();
-      if (_.isFunction(el.scrollIntoViewIfNeeded)) {
-        el.scrollIntoViewIfNeeded();
-      } else {
-        el.scrollIntoView();
-      }
+    const selected = this.refs.selected;
+    if (!selected) {
+      return;
+    }
+    let el = selected.getDOMNode();
+    if (_.isFunction(el.scrollIntoViewIfNeeded)) {
+      el.scrollIntoViewIfNeeded();
+    } else {
+      el.scrollIntoView();
     }
   },
   close: function () {
     this.getDOMNode().parentNode.destroy();
   },
   save: function () {
-    var data = {
+    const data = {
       perms: {},
       secret: this.refs.isSecret.getDOMNode().checked,
       name: this.workspace,
       owner: this.owner,
     };
-    this.state.perms.forEach(function (user, index) {
-      data.perms[user.id] = TYPES.filter(function (type) {
+    this.state.perms.forEach((user, index) => {
+      data.perms[user.id] = TYPES.filter((type) => {
         return this.refs["" + index + type].getDOMNode().checked;
-      }, this);
-    }, this);
+      });
+    });
     if (this.state.newUser) {
-      data.perms[this.state.newUser.user] = TYPES.filter(function (type) {
+      data.perms[this.state.newUser.user] = TYPES.filter((type) => {
         return this.refs["new_" + type].getDOMNode().checked;
-      }, this);
+      });
     }
-    data.perms.AnonymousUser = TYPES.filter(function (type) {
+    data.perms.AnonymousUser = TYPES.filter((type) => {
       if (type === "admin_room") {
         return false;
       }
       return this.refs["anon_" + type].getDOMNode().checked;
-    }, this);
+    });
     this.ajax({
       type: "put",
       url: this.props.floourl.toAPIString(),
       contentType: "application/json",
       data: JSON.stringify(data),
-      success: _.bind(function () {
+      success: () => {
         console.log("success saving permission data", arguments);
+        // TODO: this is wasteful. it does another XHR. We could just look at the success response here
         this.loadData();
         this.close();
-      }, this),
-      error: function (e) {
-        throw new Error(e);
+      },
+      error: (e) => {
+        this.setState({
+          errors: e.statusText || "Unknown error. :(",
+        });
       }
     });
   },
@@ -149,12 +153,12 @@ module.exports = React.createClass({
     }
   },
   autoComplete_: function (event) {
-    var keyCode, down, up, tab, enter, selectedIndex;
-    up = 38;
-    down = 40;
-    tab = 9;
-    enter = 13;
-    keyCode = event.keyCode;
+    const up = 38;
+    const down = 40;
+    const tab = 9;
+    const enter = 13;
+    const keyCode = event.keyCode;
+    let selectedIndex;
     switch (keyCode) {
       case down:
         //move down or up if at the end
@@ -215,10 +219,10 @@ module.exports = React.createClass({
     });
   },
   handlePermissionChange_: function (type, index) {
-    var checked, refKey, permIndex = TYPES.indexOf(type);
-    refKey = "" + index + type;
-    checked = this.refs[refKey].getDOMNode().checked;
-    TYPES.forEach(function (t, i) {
+    const permIndex = TYPES.indexOf(type);
+    let refKey = "" + index + type;
+    const checked = this.refs[refKey].getDOMNode().checked;
+    TYPES.forEach((t, i) => {
       if (index === "anon_" && t === "admin_room") {
         return;
       }
@@ -228,10 +232,10 @@ module.exports = React.createClass({
       } else if (!checked && i < permIndex) {
         this.refs[refKey].getDOMNode().checked = false;
       }
-    }, this);
+    });
   },
   getInput: function (index, user, type) {
-    var labels = {
+    const labels = {
       "admin_room": "Admin",
       "edit_room": "Edit",
       "request_perms": "Request permissions",
@@ -345,6 +349,9 @@ module.exports = React.createClass({
           <div>
             <a href={"/" + this.owner + "/invite"}>Invite users to your organization.</a>
           </div>
+        </div>)}
+        {this.state.error && (<div className="alert alert-danger">
+          Error saving permissions: {this.state.errors}
         </div>)}
         {this.renderFooter()}
       </div>

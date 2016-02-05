@@ -56,10 +56,10 @@ module.exports = React.createClass({
         <h3>{name}</h3>
         <ol>
           {
-            _.map(items, function (b, id) {
+            _.map(items, (b, id) => {
               var path = b.path;
               return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path}</li>);
-            }, this)
+            })
           }
         </ol>
       </div>
