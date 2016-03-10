@@ -12,7 +12,7 @@ const api = require("../common/api");
 const constants = require("../common/constants");
 const mixins = require("./mixins");
 
-module.exports = React.createClass({
+const CreateWorkspaceView = React.createClass({
   mixins: [mixins.ReactUnwrapper, mixins.FormMixin],
   getInitialState: function () {
     return {
@@ -339,3 +339,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = CreateWorkspaceView;

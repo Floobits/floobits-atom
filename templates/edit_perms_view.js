@@ -7,7 +7,7 @@ const React = require("react-atom-fork");
 const $ = require('atom-space-pen-views').$;
 const TYPES = ["admin_room", "edit_room", "request_perms", "view_room"];
 
-module.exports = React.createClass({
+const EditPermsView = React.createClass({
   permissions: null,
   getInitialState: function () {
     this.owner = this.props.floourl.owner;
@@ -366,3 +366,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = EditPermsView;

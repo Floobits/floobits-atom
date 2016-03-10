@@ -7,7 +7,7 @@ const prefs = require("../common/userPref_model");
 
 const floop = require("../common/floop");
 
-module.exports = React.createClass({
+const StatusBarView = React.createClass({
   mixins: [flux.createAutoBinder(["me"], [prefs])],
   getInitialState: function () {
     return {
@@ -38,3 +38,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = StatusBarView;

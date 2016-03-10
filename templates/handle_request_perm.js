@@ -6,7 +6,7 @@ const React = require('react-atom-fork');
 const floop = require("../common/floop");
 const permsEvent = {};
 
-module.exports = React.createClass({
+const HandleRequestPermView = React.createClass({
   destroy: function () {
     this.getDOMNode().parentNode.destroy();
   },
@@ -43,3 +43,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = HandleRequestPermView;
