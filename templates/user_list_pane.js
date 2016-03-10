@@ -1,5 +1,4 @@
 /** @jsx React.DOM */
-
 "use strict";
 "use babel";
 
@@ -7,7 +6,7 @@ const React = require("react-atom-fork");
 const mixins = require("./mixins");
 const UserlistView = require("./user_view").UserlistView;
 
-module.exports = React.createClass({
+const UserlistPane = React.createClass({
   mixins: [mixins.ReactUnwrapper],
   render: function () {
     return (
@@ -21,3 +20,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = UserlistPane;
