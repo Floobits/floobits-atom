@@ -231,4 +231,9 @@ const MessagesView = React.createClass({
   }
 });
 
-module.exports = MessagesView;
+module.exports = {
+  InteractiveMessageView,
+  LogMessageView,
+  MessagesView,
+  UserMessageView,
+};

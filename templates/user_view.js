@@ -313,11 +313,7 @@ const ListViewMixin = {
   mixins: [flux.createAutoBinder(['users'])],
   /** @inheritDoc */
   render: function () {
-    var thumbnailNodes = [], isListView, me, prefs;
-
-    me = this.props.me;
-    isListView = this.isListView;
-    prefs = this.props.prefs;
+    let thumbnailNodes = [];
 
     this.props.users.forEach(function (user) {
       var hasRendered = false;
@@ -332,9 +328,9 @@ const ListViewMixin = {
           connection: connection,
           key: connection.id,
           user: user,
-          me: me,
-          isListView: isListView,
-          prefs: prefs
+          me: this.props.me,
+          isListView: this.isListView,
+          prefs: this.props.prefs,
         };
         if (connection.streamURL) {
           hasRendered = true;
@@ -383,6 +379,8 @@ const UserlistView = React.createClass({
 });
 
 module.exports = {
-  ChatUserlistView: ChatUserlistView,
-  UserlistView: UserlistView,
+  Connection,
+  ChatUserlistView,
+  NotMeUserView,
+  UserlistView,
 };
