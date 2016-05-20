@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "async": "1.x",
-    "atom-space-pen-views": "2.1.x",
+    "atom-space-pen-views": "2.2.x",
     "dmp": "0.x",
     "flukes": ">=0.1.4",
     "fs-plus": "2.x",
