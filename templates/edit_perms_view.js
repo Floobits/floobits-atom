@@ -282,7 +282,7 @@ const EditPermsView = React.createClass({
           ref={this.state.selectedIndex === index ? "selected" : ("notSelected" + index)}
           className={this.state.selectedIndex === index ? "selected" : ""}>
             <img style={{height: 30, width: 30}}
-              src={"https://secure.gravatar.com/avatar/" + user.email_hash} />
+              src={user.gravatar + "&s=60"} />
             <span className="username">{user.user}</span>
         </li>
       );
