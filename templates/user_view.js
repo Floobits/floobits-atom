@@ -12,7 +12,7 @@ const PermissionView = require("./permission_view");
 const perms = require("../common/permission_model");
 const editorAction = require("../common/editor_action");
 const webrtcAction = require("../common/webrtc_action");
-const utils = require("../utils");
+const utils = require("../common/utils");
 
 
 // const ANONYMOUS_PNG = "/static/images/anonymous.png";

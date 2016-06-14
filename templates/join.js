@@ -4,7 +4,7 @@
 
 const $ = require('atom-space-pen-views').$;
 const React = require('react-atom-fork');
-const utils = require("../utils");
+const utils = require("../common/utils");
 const mixins = require("./mixins");
 
 const JoinWorkspace = React.createClass({
