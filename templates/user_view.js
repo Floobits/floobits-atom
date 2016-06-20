@@ -171,7 +171,7 @@ const GravatarThumbnailView = React.createClass({
       src = this.props.user.gravatar;
 
     if (src) {
-      src += "?s=228";
+      src += "&s=228";
     } else {
       // No gravatar. Use placeholder.
       src = ANONYMOUS_PNG;
