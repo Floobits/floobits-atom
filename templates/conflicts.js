@@ -74,8 +74,10 @@ module.exports = React.createClass({
         buf: b.txt.toString(encoding),
         md5: b.md5,
         encoding: encoding,
-      }, null, function () {
-        floop.send_saved({id: id});
+      }, null, (err) => {
+        if (!err) {
+          floop.send_saved({id: id});
+        }
       });
     });
 
