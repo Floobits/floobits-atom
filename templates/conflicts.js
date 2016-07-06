@@ -8,7 +8,7 @@ const React = require('react-atom-fork');
 const floop = require("../common/floop");
 const fs = require("fs");
 const $ = require('atom-space-pen-views').$;
-const utils = require("../utils");
+const utils = require("../common/utils");
 
 module.exports = React.createClass({
   treeize_: function (obj) {

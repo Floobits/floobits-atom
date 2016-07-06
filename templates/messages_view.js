@@ -4,7 +4,7 @@
 const flux = require("flukes");
 const React = require('react-atom-fork');
 const _ = require("lodash");
-const utils = require("../utils");
+const utils = require("../common/utils");
 const floop = require("../common/floop");
 const messageAction = require("../common/message_action");
 

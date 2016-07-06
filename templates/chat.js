@@ -2,7 +2,7 @@
 "use strict";
 
 const React = require('react-atom-fork');
-const utils = require("../utils");
+const utils = require("../common/utils");
 const floop = require("../common/floop");
 const flux = require("flukes");
 const message_action = require("../common/message_action");
