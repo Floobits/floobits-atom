@@ -54,24 +54,6 @@ module.exports = React.createClass({
   onClick: function (id) {
     console.log(id);
   },
-  render_: function (title, name) {
-    const items = this.props[name];
-    const completed = this.state[name];
-    return (
-      <div className="">
-        <h3>{title}</h3>
-        <ol>
-          {
-            _.map(items, (b, id) => {
-              const path = b.path;
-              const checked = completed.has(id) ? "✅" : "";
-              return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path} &nbsp;{checked}</li>);
-            })
-          }
-        </ol>
-      </div>
-    );
-  },
   remote_: function () {
     this.setState({enabled: false});
     _.each(this.props.different, (b, id) => {
@@ -121,10 +103,10 @@ module.exports = React.createClass({
       newFiles: new Set(_.keys(this.props.newFiles)),
     });
     _.each(this.props.missing, (b, id) => {
-      floop.send_get_buf(id, null, () => this.setState({missing: this.state.missing.add(id)}));
+      floop.send_get_buf(id, () => this.setState({missing: this.state.missing.add(id)}));
     });
     _.each(this.props.different, (b, id) => {
-      floop.send_get_buf(id, null, () => this.setState({different: this.state.different.add(id)}));
+      floop.send_get_buf(id, () => this.setState({different: this.state.different.add(id)}));
     });
     const toFetch = _.merge({}, this.props.missing, this.props.different);
     this.props.onHandledConflicts(toFetch);
@@ -133,9 +115,29 @@ module.exports = React.createClass({
     this.setState({enabled: false});
     require("../floobits").leave_workspace();
   },
+  render_: function (title, name) {
+    const items = this.props[name];
+    const completed = this.state[name];
+    if (!_.size(items)) {
+      return "";
+    }
+    return (
+      <div>
+        <h3>{title}</h3>
+        <ol>
+          {
+            _.map(items, (b, id) => {
+              const path = b.path;
+              const checked = completed.has(id) ? "✓" : "";
+              return (<li key={id} onClick={this.onClick.bind(this, id, path)}>{path} &nbsp;{checked}</li>);
+            })
+          }
+        </ol>
+      </div>
+    );
+  },
   render_created_workspace: function () {
     const newFiles = this.render_("Uploading: ", this.props.newFiles);
-
     return (<div>
       <h1 className="native-key-bindings">You just created {fl.floourl ? fl.floourl.toString() : "the workspace"}.</h1>
       { newFiles }
@@ -153,19 +155,20 @@ module.exports = React.createClass({
     });
 
     const state = this.state;
-    const progressWidth = `${(state.different.size + state.newFiles.size + state.missing.size) / state.totalFiles * 100}%`;
+    const width = parseInt((state.different.size + state.newFiles.size + state.missing.size) / state.totalFiles * 100, 10);
+    const progressWidth = `${width}%`;
 
     return (<div>
       <h1>Your local files are different from the workspace.</h1>
-      <button disabled={!state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
-      <button ref="local" disabled={!state.enabled} onClick={this.local_}>Overwrite Local Files</button>
-      <button disabled={!state.enabled} onClick={this.cancel_}>Cancel</button>
+      <button className="btn btn-primary" disabled={!state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
+      <button className="btn btn-primary" disabled={!state.enabled} onClick={this.local_} ref="local">Overwrite Local Files</button>
+      <button className="btn btn-default" disabled={!state.enabled} onClick={this.cancel_}>Cancel</button>
 
+      {state.enabled ? false :
       <div className="fl-progress">
-        <div className="fl-progress-bar fl-progress-bar-success" style={{width: progressWidth}} role="progressbar">
-        </div>
-        {progressWidth}
-      </div>
+        <span className="fl-progress-text">{progressWidth}</span>
+        <div className="fl-progress-bar" style={{width: progressWidth}} role="progressbar"></div>
+      </div>}
 
       {missing}
       {different}
