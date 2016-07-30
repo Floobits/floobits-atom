@@ -35,7 +35,7 @@
   "dependencies": {
     "async": "1.x",
     "atom-space-pen-views": "2.2.x",
-    "dmp": "0.x",
+    "dmp": "1.x",
     "flukes": ">=0.1.4",
     "fs-plus": "2.x",
     "lodash": "4.x",
@@ -57,9 +57,9 @@
     }
   },
   "devDependencies": {
-    "eslint": "2.x",
+    "eslint": "3.x",
     "eslint-config-floobits": "*",
-    "eslint-plugin-react": "4.x"
+    "eslint-plugin-react": "5.x"
   },
   "scripts": {
     "build": "npm run install",
