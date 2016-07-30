@@ -105,11 +105,11 @@ module.exports = React.createClass({
   },
   local_: function () {
     this.setState({enabled: false});
-    const toSave = _.merge({}, this.props.missing, this.props.different);
-    _.each(toSave, function (b, id) {
+    const toFetch = _.merge({}, this.props.missing, this.props.different);
+    _.each(toFetch, function (b, id) {
       floop.send_get_buf(id);
     });
-    this.props.onHandledConflicts(toSave);
+    this.props.onHandledConflicts(toFetch);
   },
   cancel_: function () {
     this.setState({enabled: false});
