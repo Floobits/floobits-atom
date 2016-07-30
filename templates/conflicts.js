@@ -12,8 +12,8 @@ const utils = require("../common/utils");
 
 module.exports = React.createClass({
   treeize_: function (obj) {
-    var node, tree;
-    node = tree = {};
+    let node = {};
+    let tree = {};
     _.each(obj, function (p) {
       node = tree;
       p.split(path.sep).forEach(function (p) {
@@ -31,6 +31,10 @@ module.exports = React.createClass({
     return {
       enabled: true,
       clicked: "",
+      totalFiles: _.size(this.props.different) + _.size(this.props.newFiles) + _.size(this.props.missing),
+      missing: new Set(),
+      different: new Set(),
+      newFiles: new Set(),
     };
   },
   componentDidMount: function () {
@@ -50,15 +54,18 @@ module.exports = React.createClass({
   onClick: function (id) {
     console.log(id);
   },
-  render_: function (name, items) {
+  render_: function (title, name) {
+    const items = this.props[name];
+    const completed = this.state[name];
     return (
       <div className="">
-        <h3>{name}</h3>
+        <h3>{title}</h3>
         <ol>
           {
             _.map(items, (b, id) => {
-              var path = b.path;
-              return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path}</li>);
+              const path = b.path;
+              const checked = completed.has(id) ? "✅" : "";
+              return (<li key={id} className="" onClick={this.onClick.bind(this, id, path)}>{path} &nbsp;{checked}</li>);
             })
           }
         </ol>
@@ -67,26 +74,29 @@ module.exports = React.createClass({
   },
   remote_: function () {
     this.setState({enabled: false});
-    _.each(this.props.different, function (b, id) {
+    _.each(this.props.different, (b, id) => {
       let encoding = b.encoding || "utf8";
       floop.send_set_buf({
-        id: id,
+        id, encoding,
         buf: b.txt.toString(encoding),
         md5: b.md5,
-        encoding: encoding,
       }, null, (err) => {
         if (!err) {
+          this.setState({different: this.state.different.add(id)});
           floop.send_saved({id: id});
         }
       });
     });
 
-    _.each(this.props.missing, function (b, id) {
-      floop.send_delete_buf({id: id});
+    _.each(this.props.missing, (b, id) => {
+      floop.send_delete_buf({id}, null, () => {
+        // TODO: check err
+        this.setState({missing: this.state.missing.add(id)});
+      });
     });
 
-    _.each(this.props.newFiles, function (b, rel) {
-      fs.readFile(b.path, function (err, data) {
+    _.each(this.props.newFiles, (b, rel) => {
+      fs.readFile(b.path, (err, data) => {
         if (err) {
           console.log(err);
           return;
@@ -98,17 +108,25 @@ module.exports = React.createClass({
           buf: data.toString(encoding),
           encoding: encoding,
           md5: utils.md5(data),
+        }, null, () => {
+          this.setState({newFiles: this.state.newFiles.add(rel)});
         });
       });
     });
     this.props.onHandledConflicts({});
   },
   local_: function () {
-    this.setState({enabled: false});
-    const toFetch = _.merge({}, this.props.missing, this.props.different);
-    _.each(toFetch, function (b, id) {
-      floop.send_get_buf(id);
+    this.setState({
+      enabled: false,
+      newFiles: new Set(_.keys(this.props.newFiles)),
     });
+    _.each(this.props.missing, (b, id) => {
+      floop.send_get_buf(id, null, () => this.setState({missing: this.state.missing.add(id)}));
+    });
+    _.each(this.props.different, (b, id) => {
+      floop.send_get_buf(id, null, () => this.setState({different: this.state.different.add(id)}));
+    });
+    const toFetch = _.merge({}, this.props.missing, this.props.different);
     this.props.onHandledConflicts(toFetch);
   },
   cancel_: function () {
@@ -124,9 +142,9 @@ module.exports = React.createClass({
     </div>);
   },
   render_conflicts: function () {
-    const missing = this.render_("Missing", this.props.missing);
-    const different = this.render_("Different", this.props.different);
-    const newFiles = this.render_("New", this.props.newFiles);
+    const missing = this.render_("Missing", "missing");
+    const different = this.render_("Different", "different");
+    const newFiles = this.render_("New", "newFiles");
     const ignored = _.map(this.props.ignored, function (p) {
       return <li key={p}>{p}</li>;
     });
@@ -134,11 +152,20 @@ module.exports = React.createClass({
       return <li key={p}>{p}: {size}</li>;
     });
 
+    const state = this.state;
+    const progressWidth = `${(state.different.size + state.newFiles.size + state.missing.size) / state.totalFiles * 100}%`;
+
     return (<div>
       <h1>Your local files are different from the workspace.</h1>
-      <button disabled={!this.state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
-      <button ref="local" disabled={!this.state.enabled} onClick={this.local_}>Overwrite Local Files</button>
-      <button disabled={!this.state.enabled} onClick={this.cancel_}>Cancel</button>
+      <button disabled={!state.enabled} onClick={this.remote_}>Overwrite Remote Files</button>
+      <button ref="local" disabled={!state.enabled} onClick={this.local_}>Overwrite Local Files</button>
+      <button disabled={!state.enabled} onClick={this.cancel_}>Cancel</button>
+
+      <div className="fl-progress">
+        <div className="fl-progress-bar fl-progress-bar-success" style={{width: progressWidth}} role="progressbar">
+        </div>
+        {progressWidth}
+      </div>
 
       {missing}
       {different}
