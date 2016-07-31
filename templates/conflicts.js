@@ -150,8 +150,9 @@ module.exports = React.createClass({
     const ignored = _.map(this.props.ignored, function (p) {
       return <li key={p}>{p}</li>;
     });
+
     const tooBig = _.map(this.props.tooBig, function (size, p) {
-      return <li key={p}>{p}: {size}</li>;
+      return <li key={p}>{p} {utils.formatBytes(size)}</li>;
     });
 
     const state = this.state;
