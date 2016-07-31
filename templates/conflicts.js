@@ -1,13 +1,14 @@
 /** @jsx React.DOM */
 /*global fl */
 "use strict";
+const fs = require("fs");
+const path = require("path");
 
 const _ = require("lodash");
-const path = require("path");
-const React = require('react-atom-fork');
-const floop = require("../common/floop");
-const fs = require("fs");
 const $ = require('atom-space-pen-views').$;
+const React = require('react-atom-fork');
+
+const floop = require("../common/floop");
 const utils = require("../common/utils");
 
 module.exports = React.createClass({

@@ -99,7 +99,7 @@ const UserView = {
     $(this.refs.user.getDOMNode()).toggleClass("opened");
     this.state.opened = !!this.state.opened;
   },
-  render: function () {
+  render: function UserViewMixin() {
     const user = this.props.user;
     const me = this.props.me;
     const isAdmin = me.isAdmin;
@@ -312,7 +312,7 @@ const VideoThumbnailView = React.createClass({
 const ListViewMixin = {
   mixins: [flux.createAutoBinder(['users'])],
   /** @inheritDoc */
-  render: function () {
+  render: function ListViewMixin() {
     let thumbnailNodes = [];
 
     this.props.users.forEach(function (user) {
