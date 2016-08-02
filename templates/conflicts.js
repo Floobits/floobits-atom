@@ -137,6 +137,25 @@ module.exports = React.createClass({
       </div>
     );
   },
+  render_progress: function () {
+    if (this.state.enabled) {
+      return false;
+    }
+    const state = this.state;
+    const width = parseInt((state.different.size + state.newFiles.size + state.missing.size) / state.totalFiles * 100, 10);
+    const progressWidth = `${width}%`;
+    return (
+      <div>
+        <div className="fl-progress">
+          <span className="fl-progress-text">{progressWidth}</span>
+          <div className="fl-progress-bar" style={{width: progressWidth}} role="progressbar"></div>
+        </div>
+        <p className="alert alert-info" style={{marginBottom: 0, visibility: width === 100 ? "visible" : "hidden"}}>
+          All done syncing files!
+        </p>
+      </div>
+    );
+  },
   render_created_workspace: function () {
     const newFiles = this.render_("Uploading: ", this.props.newFiles);
     return (<div>
@@ -157,8 +176,7 @@ module.exports = React.createClass({
     });
 
     const state = this.state;
-    const width = parseInt((state.different.size + state.newFiles.size + state.missing.size) / state.totalFiles * 100, 10);
-    const progressWidth = `${width}%`;
+    const progress = this.render_progress();
 
     return (<div>
       <h1>Your local files are different from the workspace.</h1>
@@ -166,11 +184,7 @@ module.exports = React.createClass({
       <button className="btn btn-primary" disabled={!state.enabled} onClick={this.local_} ref="local">Overwrite Local Files</button>
       <button className="btn btn-default" disabled={!state.enabled} onClick={this.cancel_}>Cancel</button>
 
-      {state.enabled ? false :
-      <div className="fl-progress">
-        <span className="fl-progress-text">{progressWidth}</span>
-        <div className="fl-progress-bar" style={{width: progressWidth}} role="progressbar"></div>
-      </div>}
+      {progress}
 
       {missing}
       {different}
