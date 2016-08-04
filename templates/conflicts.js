@@ -157,7 +157,7 @@ module.exports = React.createClass({
     );
   },
   render_created_workspace: function () {
-    const newFiles = this.render_("Uploading: ", this.props.newFiles);
+    const newFiles = this.render_("Uploading:", "newFiles");
     return (<div>
       <h1 className="native-key-bindings">You just created {fl.floourl ? fl.floourl.toString() : "the workspace"}.</h1>
       { newFiles }
