@@ -270,7 +270,7 @@ const CreateWorkspaceView = React.createClass({
             <textarea tabIndex="9" id="floobits-description" ref="description" className="native-key-bindings form-control" type="text" rows="3" />
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group alert alert-info">
           <label className="col-sm-3 control-label">Global Permissions</label>
           <div className="col-sm-9">
             <label className="native-key-bindings checkbox-inline">
