@@ -3,8 +3,8 @@
 class PaneView extends View
   focus: -> @input.focus()
   initialize: (@pane) =>
-    pane.setView @
-    this[0].appendChild(pane.inner);
+    @pane.setView @
+    this[0].appendChild(@pane.inner)
 
   detached: ->
     console.log "detached"
