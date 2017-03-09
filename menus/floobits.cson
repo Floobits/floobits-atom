@@ -15,6 +15,7 @@
         { 'label': 'Join Workspace', 'command': 'Floobits: Join Workspace' }
         # { 'label': 'Join Recent Workspace', 'command': 'Floobits: Join Recent Workspace' }
         { 'label': 'Leave Workspace', 'command': 'Floobits: Leave Workspace' }
+        { 'label': 'Refresh Workspace', 'command': 'Floobits: Refresh Workspace' }
         { 'label': 'Create Workspace', 'command': 'Floobits: Create Workspace' }
         { 'label': 'Add Current File', 'command': 'Floobits: Add Current File' }
         { 'label': 'Toggle User List', 'command': 'Floobits: Toggle User List Panel' }
