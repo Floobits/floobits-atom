@@ -79,7 +79,7 @@ const JoinWorkspace = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div style={{overflow: "auto"}}>
         <h2>Join Workspace</h2>
         <div className="well">
           <form id="join-workspace" onSubmit={this.onSubmit} className="native-key-bindings">
